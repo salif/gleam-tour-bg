@@ -1,0 +1,34 @@
+<p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/result.html" target="_blank">
+    <code>gleam/result</code>
+  </a> съдържа функции за работа с <code>Result</code>. Gleam програмите ще я
+  ползват често, за да се избегне прекомерното влагане на <code>case</code>
+  изрази при извикване на функции, които може да се провалят (fail). </p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/result.html#map"
+    target="_blank">
+    <code>map</code>
+  </a> актуализира стойността в <code>Ok</code> на <code>Result</code>, като ѝ
+  прилага подадена функция. Ако <code>Result</code>-ът е <code>Error</code>
+  (грешка), функцията не се извиква.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/result.html#try"
+    target="_blank">
+    <code>try</code>
+  </a> извиква функция, която връща <code>Result</code>, за стойността в
+  <code>Ok</code> на <code>Result</code>. Ако <code>Result</code>-ът е
+  <code>Error</code> (грешка), функцията не се извиква. Това е удобно за верижно
+  извикване на функции, които може да се провалят (fail), една след друга,
+  спирайки на първата грешка.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/result.html#unwrap"
+    target="_blank">
+    <code>unwrap</code>
+  </a> взима стойността при успех от <code>Result</code> или връща стойност по
+  подразбиране, ако е <code>Error</code>.
+</p>
+<p> Функциите за работа с <code>Result</code> често се използват заедно с
+  конвейери (pipelines), за да се верижно извикат няколко функции, връщащи
+  <code>Result</code>. </p>

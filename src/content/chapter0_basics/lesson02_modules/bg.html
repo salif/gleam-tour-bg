@@ -1,0 +1,27 @@
+<p> Кодът в Gleam е организиран в единици, наречени <em>модули</em>. Един модул
+  е съвкупност от дефиниции (на типове, функции и т.н.), които са свързани
+  помежду си. Например, модулът <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a> съдържа различни функции за печат, като <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#println"
+    target="_blank">
+    <code>println</code>
+  </a>. </p>
+<p> Всичкият Gleam код се намира в <em>някакъв</em> модул, чието име идва от
+  името на файла, в който се намира. Например, кодът в <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a> е във файл с име <code>io.gleam</code> в директория <code>gleam</code>.
+</p>
+<p> За да достъпи код от един модул код от друг, ние го импортираме с ключовата
+  дума <code>import</code>, а името, с което ще го наричаме, е последната част
+  от името на модула. Например, след импортиране модулът <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a> се нарича <code>io</code>. </p>
+<p> Ключовата дума <code>as</code> може да се използва, за да наричаме един
+  модул с друго име. Вижте как модулът <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/string.html" target="_blank">
+    <code>gleam/string</code>
+  </a> е наречен <code>text</code> тук. </p>

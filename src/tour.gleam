@@ -12,9 +12,9 @@ import tour/widgets.{Link}
 
 const static = "static"
 
-const public = "public"
+const public = "docs"
 
-const public_precompiled = "public/precompiled"
+const public_precompiled = "docs/precompiled"
 
 const prelude = "build/dev/javascript/prelude.mjs"
 
@@ -50,57 +50,59 @@ const erlang_the_movie = [
 
 const home_html = "
 <p>
-  This tour covers all aspects of the Gleam language, and assuming you have some
-  prior programming experience should teach you everything you need to write
-  real programs in Gleam.
+  Този урок покрива всички аспекти на езика Gleam, и ако имате предишен опит
+  с програмиране, би трябвало да ви научи на всичко, което ви е нужно, за да
+  пишете реални Gleam програми. 
 </p>
 <p>
-  The tour is interactive! The code shown is editable and will be compiled and
-  evaluated as you type. Anything you print using 
+  Урокът е интерактивен! Показаният код може да се променя и ще бъде 
+  компилиран и изпълнен докато пишете. 
+  Всичко, което отпечатате с 
   <a href=\"https://hexdocs.pm/gleam_stdlib/gleam/io.html#print\" target=\"_blank\">
     <code>io.println</code>
   </a> 
-  or 
+  или 
   <a href=\"https://hexdocs.pm/gleam_stdlib/gleam/io.html#debug\" target=\"_blank\">
     <code>io.debug</code>
   </a> 
-  will be shown in the bottom section, along with any compile errors and warnings. 
-  To evaluate Gleam code the tour compiles Gleam to JavaScript and runs it, 
-  all entirely within your browser window.
+  ще бъде показано в долната секция заедно с всички грешки и предупреждения
+  (errors and warnings) при компилация. За да изпълни Gleam код, урокът го компилира
+  до JavaScript и го стартира, всичко това се случва изцяло във вашия браузър. 
 </p>
 <p>
-  If at any point you get stuck or have a question do not hesitate to ask in
-  <a href=\"https://discord.gg/Fm8Pwmy\">the Gleam Discord server</a>. We're here
-  to help, and if you find something confusing then it's likely others will too,
-  and we want to know about it so we can improve the tour.
+  Ако се затрудните или имате въпрос, не се колебайте да питате в 
+  <a href=\"https://discord.gg/Fm8Pwmy\">Discord сървъра на Gleam</a>. 
+  Тук сме, за да ви помогнем и ако нещо ви се стори неразбираемо, е 
+  вероятно да обърка и други хора и ние бихме искали да го знаем, 
+  за да подобрим урока. 
 </p>
 <p>
-  OK, let's go. Click \"Next\" to get started, click \"Contents\" to jump to a
-  specific topic, or go <a href=\"/everything\">here</a> to read everything in
-  one page.
+  Добре, да започваме! Натиснете \"Напред\", за да продължите, \"Съдържание\",
+  за да отидете на определена тема или отидете <a href=\"/everything\">тук</a>,
+  за да видите всички теми в една страница. 
 </p>
 "
 
 const what_next_html = "
 <p>
-  Congratulations on completing the tour! Here's some ideas for what to do next:
+  Поздравления за завършването на урока! Ето някои идеи какво да правите след това: 
 </p>
 
 <p>
-  Read the <a href=\"https://gleam.run/writing-gleam\">Writing Gleam
-  guide</a> to learn how to create and develop a Gleam project.
+  Прочетете <a href=\"https://gleam.run/writing-gleam\">ръководството
+  \"Писане на Gleam код\"</a>, за да научите как се създава и разработва Gleam проект. 
 </p>
 <p>
-  Join the <a href=\"https://discord.gg/Fm8Pwmy\">the Gleam Discord server</a>
-  and meet the community. They're friendly and helpful!
+  Присъединете се към <a href=\"https://discord.gg/Fm8Pwmy\">Discord сървъра на Gleam</a>
+  и се запознайте с общността. Те са дружелюбни и готови да ви помогнат! 
 </p>
 <p>
-  Enroll in the <a href=\"https://exercism.io/tracks/gleam\">Exercism
-  Gleam track</a> to practice your Gleam skills through a series of exercises
-  and optionally get feedback from experienced Gleam developers.
+  Запишете се в <a href=\"https://exercism.io/tracks/gleam\">Gleam пътеката
+  в Exercism</a>, за да упражните уменията си по Gleam чрез серия от
+  упражнения и евентуално да получите обратна връзка от опитни Gleam разработчици. 
 </p>
 <p>
-  Happy hacking!
+  Приятно писане на код!
 </p>
 "
 
@@ -132,7 +134,7 @@ pub fn main() {
 
   case result {
     Ok(_) -> {
-      io.println("Site compiled to ./public 🎉")
+      io.println("Site compiled to ./docs 🎉")
     }
     Error(snag) -> {
       panic as snag.pretty_print(snag)
@@ -195,8 +197,8 @@ fn read_file(path: String) -> snag.Result(String) {
 }
 
 fn load_lesson(chapter_path: String, names: FileNames) -> snag.Result(Lesson) {
-  use code <- result.try(read_file(names.path <> "/code.gleam"))
-  use text <- result.try(read_file(names.path <> "/en.html"))
+  use code <- result.try(read_file(names.path <> "/code_bg.gleam"))
+  use text <- result.try(read_file(names.path <> "/bg.html"))
 
   Ok(Lesson(
     name: names.name,
@@ -224,7 +226,7 @@ fn write_content(chapters: List(Chapter)) -> snag.Result(Nil) {
   // Home page
   use _ <- result.try(
     write_lesson(Lesson(
-      name: "Welcome to the Gleam language tour! 💫",
+      name: "Добре дошли в обиколката на езика Gleam! 💫",
       text: home_html,
       code: hello_joe,
       path: path_home,
@@ -248,7 +250,7 @@ fn write_content(chapters: List(Chapter)) -> snag.Result(Nil) {
   // Lesson contents page
   use _ <- result.try(
     write_lesson(Lesson(
-      name: "Table of Contents",
+      name: "Съдържание",
       text: contents_list_html(chapters),
       code: hello_joe,
       path: path_table_of_contents,
@@ -259,6 +261,8 @@ fn write_content(chapters: List(Chapter)) -> snag.Result(Nil) {
 
   // Everything page
   use _ <- result.try(write_everything_page(chapters))
+
+  use _ <- result.try(write_text(public <> "/.nojekyll", ""))
 
   Ok(Nil)
 }
@@ -287,14 +291,14 @@ fn contents_list_html(chapters: List(Chapter)) -> String {
 
   [
     h("p", [], [
-      text("Looking for all the content on one page? "),
-      h("a", [#("href", path_everything)], [text("Find it here")]),
+      text("Търсите ли цялото съдържание на една страница? "),
+      h("a", [#("href", path_everything)], [text("Ще го намерите тук")]),
       text("!"),
     ]),
     ..chapters
   ]
   |> list.append([
-    h("p", [], [h("a", [#("href", path_what_next)], [text("What's next…?")])]),
+    h("p", [], [h("a", [#("href", path_what_next)], [text("Какво следва…?")])]),
   ])
   |> list.map(render_html)
   |> string.join("\n")
@@ -590,7 +594,7 @@ const css_defaults_code = [css_syntax_highlight, css_scheme_atom_one]
 
 /// Renders the navbar with common links
 fn render_navbar() -> Html {
-  widgets.navbar(titled: "Gleam Language Tour", links: [
+  widgets.navbar(titled: "Обиколка на езика Gleam", links: [
     Link(label: "gleam.run", to: "http://gleam.run"),
   ])
 }
@@ -667,11 +671,11 @@ fn lesson_page_render(lesson: Lesson) -> String {
             )),
           ]),
           h("nav", [#("class", "prev-next")], [
-            navlink("Back", lesson.previous),
+            navlink("Назад", lesson.previous),
             text(" — "),
-            h("a", [#("href", path_table_of_contents)], [text("Contents")]),
+            h("a", [#("href", path_table_of_contents)], [text("Съдържание")]),
             text(" — "),
-            navlink("Next", lesson.next),
+            navlink("Напред", lesson.next),
           ]),
         ]),
         h("section", [#("id", "right")], [
@@ -706,7 +710,7 @@ fn slugify_path(path: String) -> String {
 
 /// Renders a lesson item in the everyting page's list
 fn everything_page_lesson_html(lesson: Lesson, index: Int, end_index: Int) {
-  let snippet_link_title = "Experiment with " <> lesson.name <> " in browser"
+  let snippet_link_title = "Експериментирайте с " <> lesson.name <> " в браузъра"
 
   let lesson_content =
     h("article", [#("class", "lesson"), #("id", slugify_path(lesson.path))], [
@@ -726,7 +730,7 @@ fn everything_page_lesson_html(lesson: Lesson, index: Int, end_index: Int) {
           ],
           [
             h("i", [#("class", "snippet-link-icon")], [text("</>")]),
-            text("Run code snippet"),
+            text("Изпълняване на кода"),
           ],
         ),
       ]),
@@ -1028,23 +1032,23 @@ pub fn render_page_html(page config: PageConfig) -> Html {
   // render html
   html(HtmlConfig(
     head: HeadConfig(
-      description: "An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!",
+      description: "Интерактивно въведение и справочник за езика за програмиране Gleam. Научете Gleam във вашия браузър!",
       image: "https://gleam.run/images/og-image.png",
-      title: config.title <> " - The Gleam Language Tour",
+      title: config.title <> " - Обиколка на езика Gleam",
       url: "https://tour.gleam.run/" <> config.path,
       path: config.path,
       meta: [],
       stylesheets: config.stylesheets,
       scripts: [
         html_script(
-          "https://plausible.io/js/script.js",
-          ScriptOptions(defer: True, module: False),
-          [#("data-domain", "tour.gleam.run")],
+          "//gc.zgo.at/count.js",
+          ScriptOptions(defer: False, module: False),
+          [#("data-goatcounter", "https://sgi.goatcounter.com/count")],
         ),
         ..config.scripts.head
       ],
     ),
-    lang: "en-GB",
+    lang: "bg",
     attributes: [#("class", "theme-light")],
     body: BodyConfig(
       attributes: [body_class],

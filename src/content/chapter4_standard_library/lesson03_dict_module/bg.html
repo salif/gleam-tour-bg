@@ -1,0 +1,30 @@
+<p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html"><code>gleam/dict</code>
+  </a> (<code>dict</code> - речник) дефинира типа <code>Dict</code> (речник) и
+  функции за работа с него. Речникът е колекция от ключове и стойности, наричана
+  още хеш-таблица (hash map/table) в други езици за програмиране. </p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#new" target="_blank">
+    <code>new</code>
+  </a> (нов) и <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#from_list"
+    target="_blank">
+    <code>from_list</code>
+  </a> (от списък) могат да се ползват за създаване на речници.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#insert"
+    target="_blank">
+    <code>insert</code>
+  </a> (вмъкване) и <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#delete"
+    target="_blank">
+    <code>delete</code>
+  </a> (изтриване) служат за добавяне и премахване на елементи от речник.
+</p>
+<p> Както списъците, речниците са <em>неизменни</em> (immutable). При добавяне
+  или премахване на елемент, се връща нов речник с добавения или премахнатия
+  елемент. </p>
+<p> Речниците не са наредени! Ако изглежда, че елементите са в някакъв ред, това
+  е случайно и не бива да се разчита на него. Редът им може да се промени без
+  предупреждение в бъдещи версии или в различни среди за изпълнение. </p>

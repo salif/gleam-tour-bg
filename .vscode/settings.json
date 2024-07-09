@@ -1,0 +1,6 @@
+{
+	"[gleam]": {
+		"editor.formatOnSave": false
+	},
+	"Workspace_Formatter.includePattern": ["bg.html"]
+}

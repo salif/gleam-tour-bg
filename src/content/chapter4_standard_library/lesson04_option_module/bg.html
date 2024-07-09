@@ -1,0 +1,16 @@
+<p> В Gleam стойностите не може да са <code>null</code>, затова стандартната
+  библиотека <a href="https://hexdocs.pm/gleam_stdlib/gleam/option.html"
+    target="_blank">
+    <code>gleam/option</code>
+  </a> дефинира типа <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/option.html#Option"
+    target="_blank">
+    <code>Option</code>
+  </a>, (опция) който може да се използва, за да представи стойност, която или я
+  има, или я няма. </p>
+<p> Типът <code>Option</code> е много подобен на <code>Result</code>, но няма
+  стойност за грешка (error). В някои езици за програмиране функциите връщат
+  <code>Option</code>, когато няма детайли за грешката, но Gleam винаги използва
+  <code>Result</code>. Така всички функции, които могат да се провалят (fail) са
+  консистентни, както и не се налага да се пише много излишен код за функции,
+  които използват и двата типа. </p>
