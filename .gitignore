@@ -2,6 +2,5 @@
 *.ez
 build
 erl_crash.dump
-/docs
 /wasm-compiler
 /manifest.toml

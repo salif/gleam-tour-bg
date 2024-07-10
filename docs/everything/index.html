@@ -1,0 +1,1940 @@
+<!DOCTYPE html><html lang="bg" class="theme-light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Everything! - Обиколка на езика Gleam</title><meta name="description" content="Интерактивно въведение и справочник за езика за програмиране Gleam. Научете Gleam във вашия браузър!"><meta property="og:type" content="website"><meta property="og:title" content="Everything! - Обиколка на езика Gleam"><meta property="og:description" content="Интерактивно въведение и справочник за езика за програмиране Gleam. Научете Gleam във вашия браузър!"><meta property="og:url" content="https://tour.gleam.run//everything"><meta property="og:image" content="https://gleam.run/images/og-image.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://tour.gleam.run//everything"><meta property="twitter:title" content="Everything! - Обиколка на езика Gleam"><meta property="twitter:description" content="Интерактивно въведение и справочник за езика за програмиране Gleam. Научете Gleam във вашия браузър!"><meta property="twitter:image" content="https://gleam.run/images/og-image.png"><link rel="shortcut icon" href="https://gleam.run/images/lucy/lucy.svg"><link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/theme.css"><link rel="stylesheet" href="/common.css"><link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/code/syntax-highlight.css"><link rel="stylesheet" href="/css/code/color-schemes/atom-one.css"><link rel="stylesheet" href="/css/root.css"><link rel="stylesheet" href="/css/pages/everything.css"><script src="//gc.zgo.at/count.js" type="text/javascript" data-goatcounter="https://sgi.goatcounter.com/count"></script><script src="/js/highlight/highlight.core.min.js" type="module"></script><script src="/js/highlight/regexes.js" defer="" type="module"></script></head><body id="page-everything"><nav class="navbar"><a href="/" class="logo"><img src="https://gleam.run/images/lucy/lucy.svg" alt="Lucy the star, Gleam's mascot">Обиколка на езика Gleam</a><div class="nav-right"><a href="http://gleam.run" class="link">gleam.run</a><div class="theme-picker"><button type="button" alt="Switch to light mode" title="Switch to light mode" class="theme-button -light" data-light-theme-toggle=""><svg id="icon-moon" viewBox="0 0 24 24"><path d="M21.996 12.882c0.022-0.233-0.038-0.476-0.188-0.681-0.325-0.446-0.951-0.544-1.397-0.219-0.95 0.693-2.060 1.086-3.188 1.162-1.368 0.092-2.765-0.283-3.95-1.158-1.333-0.985-2.139-2.415-2.367-3.935s0.124-3.124 1.109-4.456c0.142-0.191 0.216-0.435 0.191-0.691-0.053-0.55-0.542-0.952-1.092-0.898-2.258 0.22-4.314 1.18-5.895 2.651-1.736 1.615-2.902 3.847-3.137 6.386-0.254 2.749 0.631 5.343 2.266 7.311s4.022 3.313 6.772 3.567 5.343-0.631 7.311-2.266 3.313-4.022 3.567-6.772zM19.567 14.674c-0.49 1.363-1.335 2.543-2.416 3.441-1.576 1.309-3.648 2.016-5.848 1.813s-4.108-1.278-5.417-2.854-2.016-3.648-1.813-5.848c0.187-2.032 1.117-3.814 2.507-5.106 0.782-0.728 1.71-1.3 2.731-1.672-0.456 1.264-0.577 2.606-0.384 3.899 0.303 2.023 1.38 3.934 3.156 5.247 1.578 1.167 3.448 1.668 5.272 1.545 0.752-0.050 1.496-0.207 2.21-0.465z"></path></svg><svg id="icon-toggle-left" viewBox="0 0 24 24"><path d="M8 4c-2.209 0-4.21 0.897-5.657 2.343s-2.343 3.448-2.343 5.657 0.897 4.21 2.343 5.657 3.448 2.343 5.657 2.343h8c2.209 0 4.21-0.897 5.657-2.343s2.343-3.448 2.343-5.657-0.897-4.21-2.343-5.657-3.448-2.343-5.657-2.343zM8 6h8c1.657 0 3.156 0.67 4.243 1.757s1.757 2.586 1.757 4.243-0.67 3.156-1.757 4.243-2.586 1.757-4.243 1.757h-8c-1.657 0-3.156-0.67-4.243-1.757s-1.757-2.586-1.757-4.243 0.67-3.156 1.757-4.243 2.586-1.757 4.243-1.757zM12 12c0-1.104-0.449-2.106-1.172-2.828s-1.724-1.172-2.828-1.172-2.106 0.449-2.828 1.172-1.172 1.724-1.172 2.828 0.449 2.106 1.172 2.828 1.724 1.172 2.828 1.172 2.106-0.449 2.828-1.172 1.172-1.724 1.172-2.828zM10 12c0 0.553-0.223 1.051-0.586 1.414s-0.861 0.586-1.414 0.586-1.051-0.223-1.414-0.586-0.586-0.861-0.586-1.414 0.223-1.051 0.586-1.414 0.861-0.586 1.414-0.586 1.051 0.223 1.414 0.586 0.586 0.861 0.586 1.414z"></path></svg></button><button type="button" alt="Switch to dark mode" title="Switch to dark mode" class="theme-button -dark" data-dark-theme-toggle=""><svg id="icon-sun" viewBox="0 0 24 24"><path d="M18 12c0-1.657-0.673-3.158-1.757-4.243s-2.586-1.757-4.243-1.757-3.158 0.673-4.243 1.757-1.757 2.586-1.757 4.243 0.673 3.158 1.757 4.243 2.586 1.757 4.243 1.757 3.158-0.673 4.243-1.757 1.757-2.586 1.757-4.243zM16 12c0 1.105-0.447 2.103-1.172 2.828s-1.723 1.172-2.828 1.172-2.103-0.447-2.828-1.172-1.172-1.723-1.172-2.828 0.447-2.103 1.172-2.828 1.723-1.172 2.828-1.172 2.103 0.447 2.828 1.172 1.172 1.723 1.172 2.828zM11 1v2c0 0.552 0.448 1 1 1s1-0.448 1-1v-2c0-0.552-0.448-1-1-1s-1 0.448-1 1zM11 21v2c0 0.552 0.448 1 1 1s1-0.448 1-1v-2c0-0.552-0.448-1-1-1s-1 0.448-1 1zM3.513 4.927l1.42 1.42c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-1.42-1.42c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414zM17.653 19.067l1.42 1.42c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-1.42-1.42c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414zM1 13h2c0.552 0 1-0.448 1-1s-0.448-1-1-1h-2c-0.552 0-1 0.448-1 1s0.448 1 1 1zM21 13h2c0.552 0 1-0.448 1-1s-0.448-1-1-1h-2c-0.552 0-1 0.448-1 1s0.448 1 1 1zM4.927 20.487l1.42-1.42c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-1.42 1.42c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0zM19.067 6.347l1.42-1.42c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-1.42 1.42c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0z"></path></svg><svg id="icon-toggle-right" viewBox="0 0 24 24"><path d="M8 4c-2.209 0-4.21 0.897-5.657 2.343s-2.343 3.448-2.343 5.657 0.897 4.21 2.343 5.657 3.448 2.343 5.657 2.343h8c2.209 0 4.21-0.897 5.657-2.343s2.343-3.448 2.343-5.657-0.897-4.21-2.343-5.657-3.448-2.343-5.657-2.343zM8 6h8c1.657 0 3.156 0.67 4.243 1.757s1.757 2.586 1.757 4.243-0.67 3.156-1.757 4.243-2.586 1.757-4.243 1.757h-8c-1.657 0-3.156-0.67-4.243-1.757s-1.757-2.586-1.757-4.243 0.67-3.156 1.757-4.243 2.586-1.757 4.243-1.757zM20 12c0-1.104-0.449-2.106-1.172-2.828s-1.724-1.172-2.828-1.172-2.106 0.449-2.828 1.172-1.172 1.724-1.172 2.828 0.449 2.106 1.172 2.828 1.724 1.172 2.828 1.172 2.106-0.449 2.828-1.172 1.172-1.724 1.172-2.828zM18 12c0 0.553-0.223 1.051-0.586 1.414s-0.861 0.586-1.414 0.586-1.051-0.223-1.414-0.586-0.586-0.861-0.586-1.414 0.223-1.051 0.586-1.414 0.861-0.586 1.414-0.586 1.051 0.223 1.414 0.586 0.586 0.861 0.586 1.414z"></path></svg></button></div></div></nav><main id="everything"><aside id="everything-contents" class="dim-bg"><article class="chapter" id="chapter-Basics"><h3>Basics</h3><ul><li><a href="#basics-hello-world" class="link" class="link padded">Hello world</a></li><li><a href="#basics-modules" class="link" class="link padded">Modules</a></li><li><a href="#basics-unqualified-imports" class="link" class="link padded">Unqualified imports</a></li><li><a href="#basics-type-checking" class="link" class="link padded">Type checking</a></li><li><a href="#basics-ints" class="link" class="link padded">Ints</a></li><li><a href="#basics-floats" class="link" class="link padded">Floats</a></li><li><a href="#basics-number-formats" class="link" class="link padded">Number formats</a></li><li><a href="#basics-equality" class="link" class="link padded">Equality</a></li><li><a href="#basics-strings" class="link" class="link padded">Strings</a></li><li><a href="#basics-bools" class="link" class="link padded">Bools</a></li><li><a href="#basics-assignments" class="link" class="link padded">Assignments</a></li><li><a href="#basics-discard-patterns" class="link" class="link padded">Discard patterns</a></li><li><a href="#basics-type-annotations" class="link" class="link padded">Type annotations</a></li><li><a href="#basics-type-imports" class="link" class="link padded">Type imports</a></li><li><a href="#basics-type-aliases" class="link" class="link padded">Type aliases</a></li><li><a href="#basics-blocks" class="link" class="link padded">Blocks</a></li><li><a href="#basics-lists" class="link" class="link padded">Lists</a></li><li><a href="#basics-constants" class="link" class="link padded">Constants</a></li></ul></article><article class="chapter" id="chapter-Functions"><h3>Functions</h3><ul><li><a href="#functions-functions" class="link" class="link padded">Functions</a></li><li><a href="#functions-higher-order-functions" class="link" class="link padded">Higher order functions</a></li><li><a href="#functions-anonymous-functions" class="link" class="link padded">Anonymous functions</a></li><li><a href="#functions-function-captures" class="link" class="link padded">Function captures</a></li><li><a href="#functions-generic-functions" class="link" class="link padded">Generic functions</a></li><li><a href="#functions-pipelines" class="link" class="link padded">Pipelines</a></li><li><a href="#functions-labelled-arguments" class="link" class="link padded">Labelled arguments</a></li><li><a href="#functions-documentation-comments" class="link" class="link padded">Documentation comments</a></li><li><a href="#functions-deprecations" class="link" class="link padded">Deprecations</a></li></ul></article><article class="chapter" id="chapter-Flow control"><h3>Flow control</h3><ul><li><a href="#flow-control-case-expressions" class="link" class="link padded">Case expressions</a></li><li><a href="#flow-control-variable-patterns" class="link" class="link padded">Variable patterns</a></li><li><a href="#flow-control-string-patterns" class="link" class="link padded">String patterns</a></li><li><a href="#flow-control-list-patterns" class="link" class="link padded">List patterns</a></li><li><a href="#flow-control-recursion" class="link" class="link padded">Recursion</a></li><li><a href="#flow-control-tail-calls" class="link" class="link padded">Tail calls</a></li><li><a href="#flow-control-list-recursion" class="link" class="link padded">List recursion</a></li><li><a href="#flow-control-multiple-subjects" class="link" class="link padded">Multiple subjects</a></li><li><a href="#flow-control-alternative-patterns" class="link" class="link padded">Alternative patterns</a></li><li><a href="#flow-control-pattern-aliases" class="link" class="link padded">Pattern aliases</a></li><li><a href="#flow-control-guards" class="link" class="link padded">Guards</a></li></ul></article><article class="chapter" id="chapter-Data types"><h3>Data types</h3><ul><li><a href="#data-types-tuples" class="link" class="link padded">Tuples</a></li><li><a href="#data-types-custom-types" class="link" class="link padded">Custom types</a></li><li><a href="#data-types-records" class="link" class="link padded">Records</a></li><li><a href="#data-types-record-accessors" class="link" class="link padded">Record accessors</a></li><li><a href="#data-types-record-pattern-matching" class="link" class="link padded">Record pattern matching</a></li><li><a href="#data-types-record-updates" class="link" class="link padded">Record updates</a></li><li><a href="#data-types-generic-custom-types" class="link" class="link padded">Generic custom types</a></li><li><a href="#data-types-nil" class="link" class="link padded">Nil</a></li><li><a href="#data-types-results" class="link" class="link padded">Results</a></li><li><a href="#data-types-bit-arrays" class="link" class="link padded">Bit arrays</a></li></ul></article><article class="chapter" id="chapter-Standard library"><h3>Standard library</h3><ul><li><a href="#standard-library-standard-library-package" class="link" class="link padded">Standard library package</a></li><li><a href="#standard-library-list-module" class="link" class="link padded">List module</a></li><li><a href="#standard-library-result-module" class="link" class="link padded">Result module</a></li><li><a href="#standard-library-dict-module" class="link" class="link padded">Dict module</a></li><li><a href="#standard-library-option-module" class="link" class="link padded">Option module</a></li></ul></article><article class="chapter" id="chapter-Advanced features"><h3>Advanced features</h3><ul><li><a href="#advanced-features-opaque-types" class="link" class="link padded">Opaque types</a></li><li><a href="#advanced-features-use" class="link" class="link padded">Use</a></li><li><a href="#advanced-features-use-sugar" class="link" class="link padded">Use sugar</a></li><li><a href="#advanced-features-todo" class="link" class="link padded">Todo</a></li><li><a href="#advanced-features-panic" class="link" class="link padded">Panic</a></li><li><a href="#advanced-features-let-assert" class="link" class="link padded">Let assert</a></li><li><a href="#advanced-features-externals" class="link" class="link padded">Externals</a></li><li><a href="#advanced-features-multi-target-externals" class="link" class="link padded">Multi target externals</a></li><li><a href="#advanced-features-external-gleam-fallbacks" class="link" class="link padded">External gleam fallbacks</a></li></ul></article></aside><section id="everything-lessons"><h3 id="basics" class="chapter-title">Basics</h3><hr class="chapter-separator"><article class="lesson" id="basics-hello-world"><a href="#basics-hello-world" class="link"><h2 class="lesson-title">Hello world</h2></a><p> Ето една мъничка програма, която отпечатва текста "Hello, Joe!". След малко
+  ще обясним как работи. </p>
+<p> В един нормален Gleam проект, тази програма ще се изпълни с командата
+  <code>gleam run</code> от командния ред, но тук, в този урок, програмата се
+  компилира и изпълнява във вашия уеб браузър, което ви позволява да опитате
+  Gleam без да инсталирате нищо на вашия компютър. </p>
+<p> Опитайте да промените текста, който се отпечатва на
+  <code>Hello, Mike!</code> и вижте какво се случва. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.println("Hello, Joe!")
+}
+</code><a class="lesson-snippet-link" href="/basics/hello-world" title="Експериментирайте с Hello world в браузъра" aria-label="Експериментирайте с Hello world в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-modules"><a href="#basics-modules" class="link"><h2 class="lesson-title">Modules</h2></a><p> Кодът в Gleam е организиран в единици, наречени <em>модули</em>. Един модул
+  е съвкупност от дефиниции (на типове, функции и т.н.), които са свързани
+  помежду си. Например, модулът <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a> съдържа различни функции за печат, като <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#println"
+    target="_blank">
+    <code>println</code>
+  </a>. </p>
+<p> Всичкият Gleam код се намира в <em>някакъв</em> модул, чието име идва от
+  името на файла, в който се намира. Например, кодът в <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a> е във файл с име <code>io.gleam</code> в директория <code>gleam</code>.
+</p>
+<p> За да достъпи код от един модул код от друг, ние го импортираме с ключовата
+  дума <code>import</code>, а името, с което ще го наричаме, е последната част
+  от името на модула. Например, след импортиране модулът <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a> се нарича <code>io</code>. </p>
+<p> Ключовата дума <code>as</code> може да се използва, за да наричаме един
+  модул с друго име. Вижте как модулът <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/string.html" target="_blank">
+    <code>gleam/string</code>
+  </a> е наречен <code>text</code> тук. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/string as text
+
+pub fn main() {
+  // Използване на функция от модула `gleam/io`
+  io.println("Hello, Mike!")
+
+  // Използване на функция от модула `gleam/string`
+  io.println(text.reverse("Hello, Joe!"))
+}
+</code><a class="lesson-snippet-link" href="/basics/modules" title="Експериментирайте с Modules в браузъра" aria-label="Експериментирайте с Modules в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-unqualified-imports"><a href="#basics-unqualified-imports" class="link"><h2 class="lesson-title">Unqualified imports</h2></a><p> Обикновено функции от други модули се използват по <em>квалифициран</em>
+  начин, което означава, че името, с което наричаме модула, стои преди името на
+  функцията с точка между тях. Например, <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#println"
+    target="_blank">
+    <code>io.println("Hello!")</code>
+  </a>. </p>
+<p> Възможно е и да се посочи списък от функции, които да се импортират от един
+  модул по <em>неквалифициран</em> начин, което означава, че името на функцията
+  може да се използва без <em>квалификатора</em> на модула (името му и точката)
+  преди него. </p>
+<p> Обикновено е по-добре да се използват квалифицирани импорти, защото така
+  става ясно къде е дефинирана функцията, което прави кода по-лесен за четене.
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>// Импортиране на модула и една от неговите функции
+import gleam/io.{println}
+
+pub fn main() {
+  // Използване на функцията по квалифициран начин
+  io.println("This is qualified")
+
+  // Или по неквалифициран начин
+  println("This is unqualified")
+}
+</code><a class="lesson-snippet-link" href="/basics/unqualified-imports" title="Експериментирайте с Unqualified imports в браузъра" aria-label="Експериментирайте с Unqualified imports в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-type-checking"><a href="#basics-type-checking" class="link"><h2 class="lesson-title">Type checking</h2></a><p> Gleam има здрава система за статична проверка на типовете, която ви помага,
+  докато пишете и редактирате код, като открива грешки и ви показва къде да
+  направите промени. </p>
+<p> Разокоментирайте реда <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#println"
+    target="_blank">
+    <code>io.println(4)</code>
+  </a> и ще видите как се показва грешка по време на компилация, защото
+  функцията <a href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#println"
+    target="_blank">
+    <code>io.println</code>
+  </a> работи само със символни низове, а не с цели числа. </p>
+<p> За да коригирате кода, променете го да извиква функцията <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#debug" target="_blank">
+    <code>io.debug</code>
+  </a>, която ще отпечата стойност от всякакъв тип. </p>
+<p> Gleam няма <code>null</code>, не прави неявни преобразувания на типове, няма
+  изключения и винаги извършва пълна проверка на типовете. Ако кодът се
+  компилира, можете да сте сравнително сигурни, че той няма несъответствия,
+  които да причинят грешки или сривове. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.println("My lucky number is:")
+  // io.println(4)
+  // 👆️ Разокоментирайте този ред
+}
+</code><a class="lesson-snippet-link" href="/basics/type-checking" title="Експериментирайте с Type checking в браузъра" aria-label="Експериментирайте с Type checking в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-ints"><a href="#basics-ints" class="link"><h2 class="lesson-title">Ints</h2></a><p>Типът <code>Int</code> в Gleam представлява цели числа.</p>
+<p> Има аритметични и оператори за сравнение за цели числа, както и оператор за
+  равенство, който работи с всички типове. </p>
+<p> При изпълнение на виртуалната машина на Erlang целите числа нямат
+  ограничение за минимален или максимален размер. При изпълнение в JavaScript
+  среда, те се представят, използвайки 64-битови числа с плаваща запетая на
+  JavaScript. </p>
+<p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/int.html" target="_blank">
+    <code>gleam/int</code>
+  </a> съдържа функции за работа с цели числа. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+
+pub fn main() {
+  // Аритметика с цели числа
+  io.debug(1 + 1)
+  io.debug(5 - 1)
+  io.debug(5 / 2)
+  io.debug(3 * 3)
+  io.debug(5 % 2)
+
+  // Сравнение на цели числа
+  io.debug(2 &gt; 1)
+  io.debug(2 &lt; 1)
+  io.debug(2 &gt;= 1)
+  io.debug(2 &lt;= 1)
+
+  // Равенството работи за всички типове
+  io.debug(1 == 1)
+  io.debug(2 == 1)
+
+  // Функции от стандартната библиотека за цели числа
+  io.debug(int.max(42, 77))
+  io.debug(int.clamp(5, 10, 20))
+}
+</code><a class="lesson-snippet-link" href="/basics/ints" title="Експериментирайте с Ints в браузъра" aria-label="Експериментирайте с Ints в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-floats"><a href="#basics-floats" class="link"><h2 class="lesson-title">Floats</h2></a><p>Типът <code>Float</code> в Gleam представлява числа с плаваща запетая.</p>
+<p> Числовите оператори в Gleam не са претоварени, затова има специални
+  оператори за работа с числа с плаваща запетая. </p>
+<p> Числата с плаваща запетая се представят като 64-битови числа с плаваща
+  запетая и в Erlang, и в JavaScript средата. Поведението им е това на
+  съответната среда, затова ще има малки разлики в поведението им в двете среди.
+</p>
+<p> В JavaScript средата, надвишаването на максималната (или минималната)
+  представима стойност за число с плаваща запетая ще доведе до
+  <code>Infinity</code> (или <code>-Infinity</code>). Ако се опитате да
+  разделите две безкрайности, ще получите <code>NaN</code> като резултат. </p>
+<p> При изпълнение на BEAM всяко препълване ще генерира грешка. Затова в Erlang
+  средата няма <code>NaN</code> или <code>Infinity</code> за числата с плаваща
+  запетая. </p>
+<p> Деленето на нула няма да препълни, а е дефинирано да дава нула. </p>
+<p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/float.html" target="_blank">
+    <code>gleam/float</code>
+  </a> съдържа функции за работа с числа с плаваща запетая. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/float
+import gleam/io
+
+pub fn main() {
+  // Аритметика с числа с плаваща запетая
+  io.debug(1.0 +. 1.5)
+  io.debug(5.0 -. 1.5)
+  io.debug(5.0 /. 2.5)
+  io.debug(3.0 *. 3.5)
+
+  // Сравнение на числа с плаваща запетая
+  io.debug(2.2 &gt;. 1.3)
+  io.debug(2.2 &lt;. 1.3)
+  io.debug(2.2 &gt;=. 1.3)
+  io.debug(2.2 &lt;=. 1.3)
+
+  // Равенството работи за всички типове
+  io.debug(1.1 == 1.1)
+  io.debug(2.1 == 1.2)
+
+  // Деленето на нула не е грешка
+  io.debug(3.14 /. 0.0)
+
+  // Функции от стандартната библиотека за числа с плаваща запетая
+  io.debug(float.max(2.0, 9.5))
+  io.debug(float.ceiling(5.4))
+}
+</code><a class="lesson-snippet-link" href="/basics/floats" title="Експериментирайте с Floats в браузъра" aria-label="Експериментирайте с Floats в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-number-formats"><a href="#basics-number-formats" class="link"><h2 class="lesson-title">Number formats</h2></a><p> Долната черта може да се добавя в числа за по-добра четливост. Например,
+  <code>1000000</code> е трудно за бързо четене, докато <code>1_000_000</code> е
+  по-лесно. </p>
+<p> Целите числа могат да се пишат в двоичен, осмичен или шестнадесетичен формат
+  с помощта на префиксите <code>0b</code>, <code>0o</code> и <code>0x</code>,
+  съответно. </p>
+<p> Числата с плаваща запетая могат да се пишат в научна нотация. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  // Долни черти
+  io.debug(1_000_000)
+  io.debug(10_000.01)
+
+  // Литерали за цели числа в двоичен, осмичен и шестнадесетичен формат
+  io.debug(0b00001111)
+  io.debug(0o17)
+  io.debug(0xF)
+
+  // Литерали за числа с плаваща запетая в научна нотация
+  io.debug(7.0e7)
+  io.debug(3.0e-4)
+}
+</code><a class="lesson-snippet-link" href="/basics/number-formats" title="Експериментирайте с Number formats в браузъра" aria-label="Експериментирайте с Number formats в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-equality"><a href="#basics-equality" class="link"><h2 class="lesson-title">Equality</h2></a><p> Gleam има операторите <code>==</code> and <code>!=</code> за проверка на
+  равенство. </p>
+<p> Операторите могат да се използват със стойности от всякакъв тип, но двата
+  операнда трябва да са от един и същи тип. </p>
+<p> Равенството се проверява <em>структурно</em>, което означава, че две
+  стойности са равни, ако имат една и съща структура, а не ако са на едно и също
+  място в паметта. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.debug(100 == 100)
+  io.debug(1.5 != 0.1)
+}
+</code><a class="lesson-snippet-link" href="/basics/equality" title="Експериментирайте с Equality в браузъра" aria-label="Експериментирайте с Equality в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-strings"><a href="#basics-strings" class="link"><h2 class="lesson-title">Strings</h2></a><p> В Gleam символните низове се пишат като текст, ограден с двойни кавички, и
+  могат да се простират на няколко реда и да съдържат Unicode символи. </p>
+<p> Операторът <code>&lt;&gt;</code> се използва за конкатенация на символни
+  низове. </p>
+<p> Поддържат се няколко екраниращи последователности: </p>
+<ul>
+  <li><code>\"</code> - двойни кавички</li>
+  <li><code>\\</code> - обратна наклонена черта</li>
+  <li><code>\f</code> - нов формуляр</li>
+  <li><code>\n</code> - нов ред</li>
+  <li><code>\r</code> - връщане в началото на реда</li>
+  <li><code>\t</code> - табулация</li>
+  <li><code>\u{xxxxxx}</code> - Unicode кодова точка</li>
+</ul>
+<p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/string.html" target="_blank">
+    <code>gleam/string</code>
+  </a> съдържа функции за работа със символни низове. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/string
+
+pub fn main() {
+  // Литерали за символни низове
+  io.debug("👩‍💻 こんにちは Gleam 🏳️‍🌈")
+  io.debug(
+    "multi
+    line
+    string",
+  )
+  io.debug("\u{1F600}")
+
+  // Двойните кавички могат да се екранират
+  io.println("\"X\" marks the spot")
+
+  // Конкатенация на символни низове
+  io.debug("One " &lt;&gt; "Two")
+
+  // Функции за символни низове
+  io.debug(string.reverse("1 2 3 4 5"))
+  io.debug(string.append("abc", "def"))
+}
+</code><a class="lesson-snippet-link" href="/basics/strings" title="Експериментирайте с Strings в браузъра" aria-label="Експериментирайте с Strings в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-bools"><a href="#basics-bools" class="link"><h2 class="lesson-title">Bools</h2></a><p>
+  <code>Bool</code> е или <code>True</code> (вярно), или <code>False</code>
+  (невярно).
+</p>
+<p> Операторите <code>||</code> (логическо ИЛИ), <code>&amp;&amp;</code>
+  (логическо И) и <code>!</code> (логическо НЕ) се използват за работа с булеви
+  стойности. </p>
+<p> Операторите <code>||</code> и <code>&amp;&amp;</code> са с късо съединение,
+  което означава, че ако лявата страна на оператора е <code>True</code> за
+  <code>||</code> или <code>False</code> за <code>&amp;&amp;</code>, дясната
+  страна на оператора няма да бъде оценена. </p>
+<p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/bool.html" target="_blank">
+    <code>gleam/bool</code>
+  </a> съдържа функции за работа с булеви стойности. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/bool
+import gleam/io
+
+pub fn main() {
+  // Оператори за булеви стойности
+  io.debug(True &amp;&amp; False)
+  io.debug(True &amp;&amp; True)
+  io.debug(False || False)
+  io.debug(False || True)
+
+  // Функции за булеви стойности
+  io.debug(bool.to_string(True))
+  io.debug(bool.to_int(False))
+}
+</code><a class="lesson-snippet-link" href="/basics/bools" title="Експериментирайте с Bools в браузъра" aria-label="Експериментирайте с Bools в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-assignments"><a href="#basics-assignments" class="link"><h2 class="lesson-title">Assignments</h2></a><p>Стойност може да се присвои на променлива, използвайки <code>let</code>.</p>
+<p> Имената на променливи могат да се използват повторно в следващи
+  <code>let</code> връзки, но стойностите, към които се отнасят, са неизменни,
+  затова самите те не се променят по никакъв начин. </p>
+<p> В Gleam, имената на променливи и функции се пишат в стил
+  <code>snake_case</code> (с долна черта между думите). </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let x = "Original"
+  io.debug(x)
+
+  // Присвояване на стойността на `x` на `y`
+  let y = x
+  io.debug(y)
+
+  // Присвояване на нова стойност на `x`
+  let x = "New"
+  io.debug(x)
+
+  // `y` все още сочи към първоначалната стойност
+  io.debug(y)
+}
+</code><a class="lesson-snippet-link" href="/basics/assignments" title="Експериментирайте с Assignments в браузъра" aria-label="Експериментирайте с Assignments в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-discard-patterns"><a href="#basics-discard-patterns" class="link"><h2 class="lesson-title">Discard patterns</h2></a><p> Ако една променлива е декларирана, но не се използва, Gleam ще покаже
+  предупреждение. </p>
+<p> Ако не е предвидено да се използва променлива, името ѝ може да започне с
+  долна черта, което ще заглуши предупреждението. </p>
+<p> Опитайте да смените името на променливата на <code>score</code>, за да
+  видите предупреждението. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>pub fn main() {
+  // Тази променлива не се използва никога
+  let _score = 1000
+}
+</code><a class="lesson-snippet-link" href="/basics/discard-patterns" title="Експериментирайте с Discard patterns в браузъра" aria-label="Експериментирайте с Discard patterns в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-type-annotations"><a href="#basics-type-annotations" class="link"><h2 class="lesson-title">Type annotations</h2></a><p> Присвояванията с <code>let</code> могат да се пишат с анотация на типа след
+  името. </p>
+<p> Анотациите на типовете може да са полезни за документиране, но не променят
+  как Gleam проверява типовете в кода, освен за да се гарантира, че анотацията е
+  коректна. </p>
+<p> Обикновено кодът в Gleam няма анотации на типовете при присвоявания. </p>
+<p> Опитайте да промените една от анотациите на типове на нещо некоректно, за да
+  видите грешка при компилация. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>pub fn main() {
+  let _name: String = "Gleam"
+
+  let _is_cool: Bool = True
+
+  let _version: Int = 1
+}
+</code><a class="lesson-snippet-link" href="/basics/type-annotations" title="Експериментирайте с Type annotations в браузъра" aria-label="Експериментирайте с Type annotations в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-type-imports"><a href="#basics-type-imports" class="link"><h2 class="lesson-title">Type imports</h2></a><p> Други модули може да дефинират типове, които искаме да използваме. В този
+  случай е нужно да ги импортираме. </p>
+<p> Както при функциите, към типовете може да се обръщаме по
+  <em>квалифициран</em> начин, като слагаме името на импортирания модул и точка
+  преди името на типа. Например, <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/bytes_builder.html#BytesBuilder"
+    target="_blank">
+    <code>bytes_builder.BytesBuilder</code>
+  </a>
+</p>
+<p> Типовете може да се импортират и по <em>неквалифициран</em> начин, като се
+  изброят в израза за импортиране с ключовата дума <code>type</code> пред името
+  им. </p>
+<p> В Gleam е по-обичайно да се импортират типове по неквалифициран начин,
+  отколкото функциите да се импортират по неквалифициран начин. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/bytes_builder
+import gleam/string_builder.{type StringBuilder}
+
+pub fn main() {
+  // Обръщане към тип по квалифициран начин
+  let _bytes: bytes_builder.BytesBuilder = bytes_builder.new()
+
+  // Обръщане към тип по неквалифициран начин
+  let _text: StringBuilder = string_builder.new()
+}
+</code><a class="lesson-snippet-link" href="/basics/type-imports" title="Експериментирайте с Type imports в браузъра" aria-label="Експериментирайте с Type imports в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-type-aliases"><a href="#basics-type-aliases" class="link"><h2 class="lesson-title">Type aliases</h2></a><p> Алиас на тип може да се използва, за да се обръщаме към тип с друго име.
+  Даването на алиас на един тип не създава нов тип, все още става дума за същия
+  тип. </p>
+<p> Имената на типовете винаги започват с главна буква, за разлика от
+  променливите и функциите, които започват с малка буква. </p>
+<p> Когато се използва ключовата дума <code>pub</code>, алиасът на типа е
+  публичен и може да се използва и от други модули. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type UserId =
+  Int
+
+pub fn main() {
+  let one: UserId = 1
+  let two: Int = 2
+
+  // UserId и Int са един и същи тип
+  io.debug(one == two)
+}
+</code><a class="lesson-snippet-link" href="/basics/type-aliases" title="Експериментирайте с Type aliases в браузъра" aria-label="Експериментирайте с Type aliases в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-blocks"><a href="#basics-blocks" class="link"><h2 class="lesson-title">Blocks</h2></a><p> Блоковете са един или повече изрази, групирани с къдрави скоби. Всеки израз
+  се оценява по ред и стойността на последния израз е връщаната стойност на
+  блока. </p>
+<p> Всяка променлива, декларирана в блока, може да се използва само в блока.
+</p>
+<p> Опитайте да разокоментирате <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html#debug" target="_blank">
+    <code>io.debug(degrees)</code>
+  </a> , за да видите грешка при компилация заради опита да се използва
+  променлива, която е извън обхвата си. </p>
+<p> Блоковете може да се използват и за промяна на реда на оценяване в изрази с
+  бинарни оператори. </p>
+<p>
+  <code>*</code> е с по-висок приоритет от <code>+</code>, затова изразът
+  <code>1 + 2 * 3</code> се оценява на 7. Ако искаме първо да се оцени
+  <code>1 + 2</code>, за да е 9 стойността на целия израз, е нужно да го сложим
+  в блок: <code>{ 1 + 2 } * 3</code>. Това е подобно на групирането със скоби в
+  някои други езици.
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let fahrenheit = {
+    let degrees = 64
+    degrees
+  }
+  // io.debug(degrees) // &lt;- Това няма да се компилира
+
+  // Промяна на реда на оценяване
+  let celsius = { fahrenheit - 32 } * 5 / 9
+  io.debug(celsius)
+}
+</code><a class="lesson-snippet-link" href="/basics/blocks" title="Експериментирайте с Blocks в браузъра" aria-label="Експериментирайте с Blocks в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-lists"><a href="#basics-lists" class="link"><h2 class="lesson-title">Lists</h2></a><p> Списъците са наредени колекции от стойности. </p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/list.html" target="_blank">
+    <code>List</code>
+  </a> е обобщен тип (generic type), който има тип-параметър за типа на
+  стойностите, които съдържа. Списък от цели числа е от тип
+  <code>List(Int)</code>, а списък от символни низове - от тип
+  <code>List(String)</code>.
+</p>
+<p> Списъците в Gleam са неизменни (immutable) едносвързани списъци, което
+  означава, че е много ефективно да се добавят и премахват елементи от началото
+  на списъка. </p>
+<p> Преброяването на елементите в списък или вземането на елементи от други
+  позиции в списъка е бавно и рядко се прави. В Gleam рядко се пишат алгоритми,
+  които индексират поредици, но когато това се налага, списъкът не е правилният
+  избор за структура от данни. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let ints = [1, 2, 3]
+
+  io.debug(ints)
+
+  // Добавяне на елементи отпред
+  io.debug([-1, 0, ..ints])
+
+  // Разокоментирайте, за да видите грешка
+  // io.debug(["zero", ..ints])
+
+  // Оригиналните списъци не се променят
+  io.debug(ints)
+}
+</code><a class="lesson-snippet-link" href="/basics/lists" title="Експериментирайте с Lists в браузъра" aria-label="Експериментирайте с Lists в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="basics-constants"><a href="#basics-constants" class="link"><h2 class="lesson-title">Constants</h2></a><p> Освен присвояване с <code>let</code>, Gleam има и константи, които се
+  дефинират на най-високо ниво в модула. </p>
+<p> Константите трябва да са литерални стойности, не може да се използват
+  функции в дефинициите им. </p>
+<p> Константите може да са полезни за стойности, които се използват многократно
+  в програмата ви, позволявайки им да бъдат именувани, както и гарантирайки, че
+  дефиницията е една и съща навсякъде, където се използват. </p>
+<p> Използването на константа може да е по-ефективно от създаването на една и
+  съща стойност в множество функции, макар че производителността ще зависи от
+  средата за изпълнение и дали се компилира за Erlang или JavaScript. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+const ints: List(Int) = [1, 2, 3]
+
+const floats = [1.0, 2.0, 3.0]
+
+pub fn main() {
+  io.debug(ints)
+  io.debug(ints == [1, 2, 3])
+
+  io.debug(floats)
+  io.debug(floats == [1.0, 2.0, 3.0])
+}
+</code><a class="lesson-snippet-link" href="/basics/constants" title="Експериментирайте с Constants в браузъра" aria-label="Експериментирайте с Constants в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="chapter-between-separator"><h3 id="functions" class="chapter-title">Functions</h3><hr class="chapter-separator"><article class="lesson" id="functions-functions"><a href="#functions-functions" class="link"><h2 class="lesson-title">Functions</h2></a><p> Ключовата дума <code>fn</code> се използва за дефиниране на нови функции.
+</p>
+<p> Функциите <code>double</code> (удвояване) и <code>multiply</code>
+  (умножаване) са дефинирани без ключовата дума <code>pub</code>. Това ги прави
+  <em>частни</em> (private) функции, те може да се използват само в този модул.
+  Ако друг модул се опита да ги използва, ще има грешка при компилация. </p>
+<p> Както при присвояването, анотациите на типовете са по желание за аргументите
+  на функциите и за връщаната от тях стойност. Счита се за добра практика да се
+  използват анотации на типовете за функциите за по-добра яснота и за
+  насърчаване на внимателно проектиране. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.debug(double(10))
+}
+
+fn double(a: Int) -&gt; Int {
+  multiply(a, 2)
+}
+
+fn multiply(a: Int, b: Int) -&gt; Int {
+  a * b
+}
+</code><a class="lesson-snippet-link" href="/functions/functions" title="Експериментирайте с Functions в браузъра" aria-label="Експериментирайте с Functions в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-higher-order-functions"><a href="#functions-higher-order-functions" class="link"><h2 class="lesson-title">Higher order functions</h2></a><p> В Gleam функциите са стойности. Те може да се присвояват на променливи, да
+  се подават като аргументи на други функции и всичко, което може да се прави
+  със стойности. </p>
+<p> Тук функцията <code>add_one</code> (добавяне на 1) се подава като аргумент
+  на функцията <code>twice</code> (два пъти). </p>
+<p> Забележете, че ключовата дума <code>fn</code> се използва и за описание на
+  типа на функцията, която <code>twice</code> приема за втория си аргумент. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  // Извикване на функция с друга функция като аргумент
+  io.debug(twice(1, add_one))
+
+  // Функции може да се присвояват на променливи
+  let my_function = add_one
+  io.debug(my_function(100))
+}
+
+fn twice(argument: Int, passed_function: fn(Int) -&gt; Int) -&gt; Int {
+  passed_function(passed_function(argument))
+}
+
+fn add_one(argument: Int) -&gt; Int {
+  argument + 1
+}
+</code><a class="lesson-snippet-link" href="/functions/higher-order-functions" title="Експериментирайте с Higher order functions в браузъра" aria-label="Експериментирайте с Higher order functions в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-anonymous-functions"><a href="#functions-anonymous-functions" class="link"><h2 class="lesson-title">Anonymous functions</h2></a><p> Освен именувани функции на ниво модул, Gleam поддържа и анонимни функции,
+  дефинирани чрез синтаксиса <code>fn() { ... }</code>. </p>
+<p> Анонимните функции може да се ползват напълно заместимо с именувани функции.
+</p>
+<p> Анонимните функции може да реферират променливи, които са били в обхват при
+  дефинирането им, което ги прави <em>затваряния</em> (closures). </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  // Присвояване на анонимна функция на променлива
+  let add_one = fn(a) { a + 1 }
+  io.debug(twice(1, add_one))
+
+  // Подаване на анонимна функция като аргумент
+  io.debug(twice(1, fn(a) { a * 2 }))
+
+  let secret_number = 42
+  // Тази анонимна функция винаги връща 42
+  let secret = fn() { secret_number }
+  io.debug(secret())
+}
+
+fn twice(argument: Int, my_function: fn(Int) -&gt; Int) -&gt; Int {
+  my_function(my_function(argument))
+}
+</code><a class="lesson-snippet-link" href="/functions/anonymous-functions" title="Експериментирайте с Anonymous functions в браузъра" aria-label="Експериментирайте с Anonymous functions в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-function-captures"><a href="#functions-function-captures" class="link"><h2 class="lesson-title">Function captures</h2></a><p> Gleam има съкратен синтаксис за създаване на анонимни функции, които приемат
+  един аргумент и веднага извикват друга функция с този аргумент: синтаксисът за
+  <em>улавяне на функции</em> (function capture syntax). </p>
+<p> Анонимната функция <code>fn(a) { some_function(..., a, ...) }</code> може да
+  се напише като <code>some_function(..., _, ...)</code>, като се подават още
+  произволен брой аргументи директно на вътрешната функция. Долната черта
+  <code>_</code> е заместител (placeholder) на аргумента, еквивалентен на
+  <code>a</code> в <code>fn(a) { some_function(..., a, ...) }</code>. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  // Тези две декларации са еквивалентни
+  let add_one_v1 = fn(x) { add(1, x) }
+  let add_one_v2 = add(1, _)
+
+  io.debug(add_one_v1(10))
+  io.debug(add_one_v2(10))
+}
+
+fn add(a: Int, b: Int) -&gt; Int {
+  a + b
+}
+</code><a class="lesson-snippet-link" href="/functions/function-captures" title="Експериментирайте с Function captures в браузъра" aria-label="Експериментирайте с Function captures в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-generic-functions"><a href="#functions-generic-functions" class="link"><h2 class="lesson-title">Generic functions</h2></a><p> Дотук всяка функция приемаше точно един тип за всеки от аргументите си. </p>
+<p> Функцията <code>twice</code> (два пъти) от предния урок за <em>функции от
+    по-висок ред</em> работеше само с функции, които приемат и връщат цели
+  числа. Това е прекалено ограничаващо, би трябвало да можем да използваме тази
+  функция с всякакви типове, стига подаваната функция и първоначалната стойност
+  да са съвместими. </p>
+<p> За да стане това, Gleam поддържа <em>обобщени функции</em> (generics),
+  известни още като <em>параметричен полиморфизъм</em>. </p>
+<p> Това се прави като се използва променлива за тип, вместо да се указва
+  конкретен тип. Тя е заместител (placeholder) на какъвто специфичен тип се
+  използва при извикване на функцията. Тези променливи за тип се пишат с имена с
+  малки букви. </p>
+<p> Променливите за тип не са като тип <code>any</code>, те се заместват с
+  конкретен тип при всяко извикване на функцията. Опитайте да разокоментирате
+  <code>twice(10, exclaim)</code>, за да видите грешка при компилация, защото се
+  опитваме да използваме променлива за тип и за цяло число, и за символен низ
+  едновременно. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let add_one = fn(x) { x + 1 }
+  let exclaim = fn(x) { x &lt;&gt; "!" }
+
+  // Невалидно, Int и String не са съвместими типове
+  // twice(10, exclaim)
+
+  // Тук променливата за тип е заменена с типа Int
+  io.debug(twice(10, add_one))
+
+  // Тук променливата за тип е заменена с типа String
+  io.debug(twice("Hello", exclaim))
+}
+
+// Името `value` (стойност) реферира към един и същи тип на няколко места
+fn twice(argument: value, my_function: fn(value) -&gt; value) -&gt; value {
+  my_function(my_function(argument))
+}
+</code><a class="lesson-snippet-link" href="/functions/generic-functions" title="Експериментирайте с Generic functions в браузъра" aria-label="Експериментирайте с Generic functions в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-pipelines"><a href="#functions-pipelines" class="link"><h2 class="lesson-title">Pipelines</h2></a><p> Често се налага да викаме няколко функции, подавайки резултата от едната
+  като аргумент на следващата. С нормалния синтаксис за извикване на функции
+  това е трудно за четене, защото е нужно да се чете кода отвътре навън. </p>
+<p> Операторът за конвейери (pipelines) <code>|></code> в Gleam ни помага в
+  такива ситуации, като ни позволява да пишем кода отгоре надолу. </p>
+<p> Операторът <code>|></code> приема резултата от израза от лявата си страна и
+  го подава като аргумент на функцията от дясната си страна. </p>
+<p> Първо се проверява дали стойността отляво може да се използва като първи
+  аргумент на извикването. Например, <code>a |> b(1, 2)</code> би се превърнало
+  в <code>b(a, 1, 2)</code>. Ако това е невъзможно, резултата от дясната страна
+  се извиква като функция: <code>b(1, 2)(a)</code>. </p>
+<p> Обикновено Gleam кодът се пише със "субекта" (subject) на функцията като
+  първи аргумент, за да се улеснят конвейерите. Ако искате да използвате
+  конвейер, подавайки стойност като непърви аргумент, може да се използва
+  <em>улавяне на функция</em> (function capture), за да се вмъкне стойността на
+  желаната позиция. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/string
+
+pub fn main() {
+  // Без оператора за конвейер
+  io.debug(string.drop_left(string.drop_right("Hello, Joe!", 1), 7))
+
+  // С оператора за конвейер
+  "Hello, Mike!"
+  |&gt; string.drop_right(1)
+  |&gt; string.drop_left(7)
+  |&gt; io.debug
+
+  // Промяна на реда с улавяне на функция
+  "1"
+  |&gt; string.append("2")
+  |&gt; string.append("3", _)
+  |&gt; io.debug
+}
+</code><a class="lesson-snippet-link" href="/functions/pipelines" title="Експериментирайте с Pipelines в браузъра" aria-label="Експериментирайте с Pipelines в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-labelled-arguments"><a href="#functions-labelled-arguments" class="link"><h2 class="lesson-title">Labelled arguments</h2></a><p> Когато функциите приемат няколко аргумента, е трудно да запомним какви са те
+  и в какъв ред се очакват. </p>
+<p> За да ни помогне, Gleam поддържа <em>именувани аргументи</em> (labelled
+  arguments), при които аргументите на функциите получават етикет (label), освен
+  вътрешното си име. Тези етикети се пишат преди името на аргумента в
+  дефиницията на функцията. </p>
+<p> Когато се използват именувани аргументи, редът им няма значение, но всички
+  аргументи без етикети трябва да са преди именуваните аргументи. </p>
+<p> Няма разлика в производителността при използване на именувани аргументи, не
+  се създава речник, нито се извършва друга работа по време на изпълнение. </p>
+<p> Етикетите не са задължителни, когато викаме функция, програмистът сам решава
+  какво е по-ясно в кода му. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  // Без етикети
+  io.debug(calculate(1, 2, 3))
+
+  // С етикети
+  io.debug(calculate(1, add: 2, multiply: 3))
+
+  // С етикети в различен ред
+  io.debug(calculate(1, multiply: 3, add: 2))
+}
+
+fn calculate(value: Int, add addend: Int, multiply multiplier: Int) {
+  value * multiplier + addend
+}
+</code><a class="lesson-snippet-link" href="/functions/labelled-arguments" title="Експериментирайте с Labelled arguments в браузъра" aria-label="Експериментирайте с Labelled arguments в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-documentation-comments"><a href="#functions-documentation-comments" class="link"><h2 class="lesson-title">Documentation comments</h2></a><p> Документацията и коментарите са важни, за да бъде кодът ни по-разбираем и
+  по-лесен за работа. </p>
+<p> Освен обикновени коментари с <code>//</code>, Gleam има и <code>///</code> и
+  <code>////</code> коментари, които служат за добавяне на документация към
+  кода. </p>
+<p>
+  <code>///</code> се използва за документиране на типове и функции и трябва да
+  стои непосредствено преди типа или функцията, които документира.
+</p>
+<p>
+  <code>////</code> се използва за документиране на модули и трябва да стои в
+  началото на модула.
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>//// Модул, съдържащ някои необичайни функции и типове.
+
+/// Тип, чиято стойност не може да се конструира.
+/// Можете ли да се досетите защо?
+pub type Never {
+  Never(Never)
+}
+
+/// Извиква функция два пъти с първоначална стойност.
+///
+pub fn twice(argument: value, my_function: fn(value) -&gt; value) -&gt; value {
+  my_function(my_function(argument))
+}
+
+/// Извиква функция три пъти с първоначална стойност.
+///
+pub fn thrice(argument: value, my_function: fn(value) -&gt; value) -&gt; value {
+  my_function(my_function(my_function(argument)))
+}
+</code><a class="lesson-snippet-link" href="/functions/documentation-comments" title="Експериментирайте с Documentation comments в браузъра" aria-label="Експериментирайте с Documentation comments в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="functions-deprecations"><a href="#functions-deprecations" class="link"><h2 class="lesson-title">Deprecations</h2></a><p> Функции и други дефиниции може да се маркират като <em>deprecated</em>
+  (непрепоръчителни за използване), използвайки атрибута
+  <code>@deprecated</code>. </p>
+<p> Ако се реферира към deprecated функция, компилаторът ще покаже
+  предупреждение, за да се уведоми програмиста, че е добре да промени кода си.
+</p>
+<p> Атрибутът <code>@deprecated</code> приема съобщение, което ще се покаже на
+  потребителя в предупреждението. В съобщението се обяснява новият подход или
+  функцията, която трябва да се използва вместо нея, или се дава линк към
+  документацията за миграция. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>pub fn main() {
+  old_function()
+  new_function()
+}
+
+@deprecated("Use new_function instead")
+fn old_function() {
+  Nil
+}
+
+fn new_function() {
+  Nil
+}
+</code><a class="lesson-snippet-link" href="/functions/deprecations" title="Експериментирайте с Deprecations в браузъра" aria-label="Експериментирайте с Deprecations в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="chapter-between-separator"><h3 id="flow-control" class="chapter-title">Flow control</h3><hr class="chapter-separator"><article class="lesson" id="flow-control-case-expressions"><a href="#flow-control-case-expressions" class="link"><h2 class="lesson-title">Case expressions</h2></a><p>
+  <code>case</code> изразите са най-често срещаният вид <em>управление на
+    потока</em> (flow control) в Gleam кода. Те са подобни на
+  <code>switch</code> в някои други езици, но са по-мощни.
+</p>
+<p>
+  <code>case</code> изразът позволява на програмиста да каже "ако данните имат
+  този вид, изпълни този код", процес, наречен <em>съпоставяне с шаблони</em>
+  (pattern matching).
+</p>
+<p> Gleam извършва <em>проверка за изчерпателност</em> (exhaustiveness
+  checking), за да е сигурно, че шаблоните в <code>case</code> израза покриват
+  всички възможни стойности. По този начин можете да сте уверени, че логиката ви
+  е актуална според типа на данните, с които работите. </p>
+<p> Опитайте да коментирате някои шаблони или да добавите излишни и ще видите
+  какви проблеми ще открие компилаторът. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+
+pub fn main() {
+  let x = int.random(5)
+  io.debug(x)
+
+  let result = case x {
+    // Съпоставяне на конкретни стойности
+    0 -&gt; "Zero"
+    1 -&gt; "One"
+
+    // Съпоставяне на всички други стойности
+    _ -&gt; "Other"
+  }
+  io.debug(result)
+}
+</code><a class="lesson-snippet-link" href="/flow-control/case-expressions" title="Експериментирайте с Case expressions в браузъра" aria-label="Експериментирайте с Case expressions в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-variable-patterns"><a href="#flow-control-variable-patterns" class="link"><h2 class="lesson-title">Variable patterns</h2></a><p> Шаблоните в <code>case</code> изразите може да декларират променливи. </p>
+<p> Когато име на променлива се използва в шаблон, стойността, която съвпада с
+  този шаблон, се присвоява на променливата, която може да се използва в тялото
+  на съответния <code>case</code> клон. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+
+pub fn main() {
+  let result = case int.random(5) {
+    // Съпоставяне на конкретни стойности
+    0 -&gt; "Zero"
+    1 -&gt; "One"
+
+    // Съпоставяне на всички други стойности
+    // и присвояването им на променливата `other`
+    other -&gt; "It is " &lt;&gt; int.to_string(other)
+  }
+  io.debug(result)
+}
+</code><a class="lesson-snippet-link" href="/flow-control/variable-patterns" title="Експериментирайте с Variable patterns в браузъра" aria-label="Експериментирайте с Variable patterns в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-string-patterns"><a href="#flow-control-string-patterns" class="link"><h2 class="lesson-title">String patterns</h2></a><p> Когато съпоставяме със символни низове, операторът <code>&lt;&gt;</code>
+  може да се използва за съвпадение със символни низове, започващи с определен
+  префикс. </p>
+<p> Шаблонът <code>"hello " <> name</code> съвпада с всеки символен низ, който
+  започва с <code>"hello "</code> и присвоява остатъка от низа на променливата
+  <code>name</code> (име). </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.debug(get_name("Hello, Joe"))
+  io.debug(get_name("Hello, Mike"))
+  io.debug(get_name("System still working?"))
+}
+
+fn get_name(x: String) -&gt; String {
+  case x {
+    "Hello, " &lt;&gt; name -&gt; name
+    _ -&gt; "Unknown"
+  }
+}
+</code><a class="lesson-snippet-link" href="/flow-control/string-patterns" title="Експериментирайте с String patterns в браузъра" aria-label="Експериментирайте с String patterns в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-list-patterns"><a href="#flow-control-list-patterns" class="link"><h2 class="lesson-title">List patterns</h2></a><p> Списъците, както и елементите, които съдържат, може да участват в
+  <em>съпоставяне с шаблони</em> (pattern matching) в <code>case</code> изрази.
+</p>
+<p> Шаблоните за списък съвпадат със списъци с определена дължина. Шаблонът
+  <code>[]</code> съвпада с празен списък, а шаблонът <code>[_]</code> - със
+  списък с един елемент. Те няма да съвпадат със списъци с друга дължина. </p>
+<p> Шаблонът с разгъване <code>..</code> може да се използва за съвпадение с
+  остатъка от списъка. Шаблонът <code>[1, ..]</code> съвпада с всеки списък,
+  започващ с 1. Шаблонът <code>[_, _, ..]</code> съвпада с всеки списък с поне
+  два елемента. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+import gleam/list
+
+pub fn main() {
+  let x = list.repeat(int.random(5), times: int.random(3))
+  io.debug(x)
+
+  let result = case x {
+    [] -&gt; "Empty list"
+    [1] -&gt; "List of just 1"
+    [4, ..] -&gt; "List starting with 4"
+    [_, _] -&gt; "List of 2 elements"
+    _ -&gt; "Some other list"
+  }
+  io.debug(result)
+}
+</code><a class="lesson-snippet-link" href="/flow-control/list-patterns" title="Експериментирайте с List patterns в браузъра" aria-label="Експериментирайте с List patterns в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-recursion"><a href="#flow-control-recursion" class="link"><h2 class="lesson-title">Recursion</h2></a><p> Gleam няма цикли (loops), вместо това итерацията се прави чрез
+  <em>рекурсия</em>, т.е. чрез функции на най-високо ниво, които извикват самите
+  себе си с различни аргументи. </p>
+<p> Всяка рекурсивна функция трябва да има поне един <em>базов случай</em> (base
+  case) и поне един <em>рекурсивен случай</em> (recursive case). Базовият случай
+  връща стойност, без да извиква функцията отново. Рекурсивният случай извиква
+  функцията отново с различни аргументи, което повтаря цикъла. </p>
+<p> Стандартната библиотека на Gleam има функции за различни често срещани
+  цикли, някои от които ще се разгледат в следващите уроци, но за по-сложни
+  цикли рекурсията често е най-лесният за четене начин да се напишат. </p>
+<p> Рекурсията може да ви изглежда обезкуражаваща, ако сте свикнали с езици,
+  които имат специални инструменти за итерация, но не се отказвайте! С времето
+  ще ви стане толкова позната, колкото и всеки друг начин за итерация. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.debug(factorial(5))
+  io.debug(factorial(7))
+}
+
+// Рекурсивна функция за пресмятане на факториел
+pub fn factorial(x: Int) -&gt; Int {
+  case x {
+    // Базов случай
+    0 -&gt; 1
+    1 -&gt; 1
+
+    // Рекурсивен случай
+    _ -&gt; x * factorial(x - 1)
+  }
+}
+</code><a class="lesson-snippet-link" href="/flow-control/recursion" title="Експериментирайте с Recursion в браузъра" aria-label="Експериментирайте с Recursion в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-tail-calls"><a href="#flow-control-tail-calls" class="link"><h2 class="lesson-title">Tail calls</h2></a><p> Когато се извика функция, се създава нов кадър (stack frame) в паметта, за
+  да се запазят аргументите и локалните променливи на функцията. Ако се създават
+  много такива кадри по време на рекурсия, програмата би използвала много памет
+  или дори може да се срине, ако достигне ограничение за памет. </p>
+<p> За да избегнем този проблем, Gleam поддържа <em>оптимизация за опашково
+    извикване</em> (tail call optimisation), което позволява на компилатора да
+  използва повторно кадъра на текущата функция, ако последното нещо, което
+  функцията прави, е да извика себе си. </p>
+<p> Неоптимизирани рекурсивни функции често може да се пренапишат така, че да
+  станат оптимизирани за опашково извикване чрез използване на
+  <em>акумулатор</em>. Акумулаторът е променлива, която се подава заедно с
+  данните, подобно на променлива, чиято стойност се променя в езици с цикли
+  <code>while</code>. </p>
+<p> Акумулаторите трябва да се крият от потребителите на вашия код, те са
+  детайли от имплементацията. За целта дефинирайте публична функция, която
+  извиква частна рекурсивна функция с първоначалната стойност на акумулатора.
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.debug(factorial(5))
+  io.debug(factorial(7))
+}
+
+pub fn factorial(x: Int) -&gt; Int {
+  // Публичната функция извиква частната опашково-рекурсивна функция
+  factorial_loop(x, 1)
+}
+
+fn factorial_loop(x: Int, accumulator: Int) -&gt; Int {
+  case x {
+    0 -&gt; accumulator
+    1 -&gt; accumulator
+
+    // Последното нещо, което прави тази функция, е да извика себе си.
+    // В предишния урок последното нещо, което правеше беше да умножи две цели числа.
+    _ -&gt; factorial_loop(x - 1, accumulator * x)
+  }
+}
+</code><a class="lesson-snippet-link" href="/flow-control/tail-calls" title="Експериментирайте с Tail calls в браузъра" aria-label="Експериментирайте с Tail calls в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-list-recursion"><a href="#flow-control-list-recursion" class="link"><h2 class="lesson-title">List recursion</h2></a><p> Макар да е по-обичайно да се използват функции от модула <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/list.html" target="_blank">
+    <code>gleam/list</code>
+  </a>, за да се обходят елементите на списък, понякога може да е по-добре да
+  работите директно със списъка. </p>
+<p> Шаблонът <code>[first, ..rest]</code> съвпада със списък с поне един
+  елемент, присвоявайки първия елемент на променливата <code>first</code>, а
+  останалите - на променливата <code>rest</code>. Използвайки този шаблон заедно
+  с шаблона за празен списък <code>[]</code>, може да напишем функция, която
+  обработва елементите на списъка, докато стигне до края му. </p>
+<p> Този код сумира елементите на списък, като рекурсивно го обхожда и добавя
+  всяко число към <code>total</code> (сума), връщайки я при достигане на края
+  му. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let sum = sum_list([18, 56, 35, 85, 91], 0)
+  io.debug(sum)
+}
+
+fn sum_list(list: List(Int), total: Int) -&gt; Int {
+  case list {
+    [first, ..rest] -&gt; sum_list(rest, total + first)
+    [] -&gt; total
+  }
+}
+</code><a class="lesson-snippet-link" href="/flow-control/list-recursion" title="Експериментирайте с List recursion в браузъра" aria-label="Експериментирайте с List recursion в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-multiple-subjects"><a href="#flow-control-multiple-subjects" class="link"><h2 class="lesson-title">Multiple subjects</h2></a><p> Понякога се налага да се съпостави с шаблон едновременно на множество
+  стойности в един и същи <code>case</code> израз. </p>
+<p> За да направим това, може да подадем няколко "субекта" (subjects) и няколко
+  шаблона, разделени със запетаи. </p>
+<p> Когато съпоставяме с множество "субекта", е нужно броят на шаблоните да е
+  равен на броя "субекта". Опитайте да премахнете един от <code>_,</code>
+  шаблоните, за да видите каква грешка при компилация се появява. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+
+pub fn main() {
+  let x = int.random(2)
+  let y = int.random(2)
+  io.debug(x)
+  io.debug(y)
+
+  let result = case x, y {
+    0, 0 -&gt; "Both are zero"
+    0, _ -&gt; "First is zero"
+    _, 0 -&gt; "Second is zero"
+    _, _ -&gt; "Neither are zero"
+  }
+  io.debug(result)
+}
+</code><a class="lesson-snippet-link" href="/flow-control/multiple-subjects" title="Експериментирайте с Multiple subjects в браузъра" aria-label="Експериментирайте с Multiple subjects в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-alternative-patterns"><a href="#flow-control-alternative-patterns" class="link"><h2 class="lesson-title">Alternative patterns</h2></a><p> Във всеки клон (clause) на <code>case</code> израза може да се зададат
+  алтернативни шаблони (patterns) с помощта на оператора <code>|</code>
+  (вертикална черта). Ако някой от шаблоните съвпадне, клонът е изпълнен. </p>
+<p> Ако даден шаблон декларира променлива, всички алтернативни шаблони в този
+  клон е нужно да декларират променлива със същото име и тип. </p>
+<p> В момента не се поддържа влагане на алтернативни шаблони, затова шаблонът
+  <code>[1 | 2 | 3]</code> не е валиден. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+
+pub fn main() {
+  let number = int.random(10)
+  io.debug(number)
+
+  let result = case number {
+    2 | 4 | 6 | 8 -&gt; "This is an even number"
+    1 | 3 | 5 | 7 -&gt; "This is an odd number"
+    _ -&gt; "I'm not sure"
+  }
+  io.debug(result)
+}
+</code><a class="lesson-snippet-link" href="/flow-control/alternative-patterns" title="Експериментирайте с Alternative patterns в браузъра" aria-label="Експериментирайте с Alternative patterns в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-pattern-aliases"><a href="#flow-control-pattern-aliases" class="link"><h2 class="lesson-title">Pattern aliases</h2></a><p> Операторът <code>as</code> може да се използва за присвояване на променливи
+  на подшаблони. </p>
+<p> Шаблонът <code>[_, ..] as first</code> съвпада с всеки непразен списък и го
+  присвоява на променливата <code>first</code> (първи). </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.debug(get_first_non_empty([[], [1, 2, 3], [4, 5]]))
+  io.debug(get_first_non_empty([[1, 2], [3, 4, 5], []]))
+  io.debug(get_first_non_empty([[], [], []]))
+}
+
+fn get_first_non_empty(lists: List(List(t))) -&gt; List(t) {
+  case lists {
+    [[_, ..] as first, ..] -&gt; first
+    [_, ..rest] -&gt; get_first_non_empty(rest)
+    [] -&gt; []
+  }
+}
+</code><a class="lesson-snippet-link" href="/flow-control/pattern-aliases" title="Експериментирайте с Pattern aliases в браузъра" aria-label="Експериментирайте с Pattern aliases в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-guards"><a href="#flow-control-guards" class="link"><h2 class="lesson-title">Guards</h2></a><p> Ключовата дума <code>if</code> може да се използва в <code>case</code>
+  изрази, за да добавим <em>guard</em> (охранител/защита?) към даден шаблон.
+  Guard е израз, който трябва да се оцени на <code>True</code> (вярно), за да
+  може шаблонът да съвпадне. </p>
+<p> В guard-ове може да се използва само ограничено множество оператори и е
+  невъзможно да се извикват функции. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let numbers = [1, 2, 3, 4, 5]
+  io.debug(get_first_larger(numbers, 3))
+  io.debug(get_first_larger(numbers, 5))
+}
+
+fn get_first_larger(numbers: List(Int), limit: Int) -&gt; Int {
+  case numbers {
+    [first, ..] if first &gt; limit -&gt; first
+    [_, ..rest] -&gt; get_first_larger(rest, limit)
+    [] -&gt; 0
+  }
+}
+</code><a class="lesson-snippet-link" href="/flow-control/guards" title="Експериментирайте с Guards в браузъра" aria-label="Експериментирайте с Guards в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="chapter-between-separator"><h3 id="data-types" class="chapter-title">Data types</h3><hr class="chapter-separator"><article class="lesson" id="data-types-tuples"><a href="#data-types-tuples" class="link"><h2 class="lesson-title">Tuples</h2></a><p> Списъците са подходящи, когато имаме колекция от елементи от един тип, но
+  понякога се налага да комбинираме няколко стойности от различни типове. В този
+  случай <em>n-торките</em> (tuples) са бърз и удобен вариант. </p>
+<p> Синтаксисът за достъп до елементи на n-торки ни позволява да вземем
+  отделните им елементи без <em>съпоставяне с шаблон</em>.
+  <code>some_tuple.0</code> (<code>some_tuple</code> - някаква n-торка) взима
+  първия елемент, <code>some_tuple.1</code> взима втория и т.н. </p>
+<p> N-торките са обобщени типове (generics), те имат тип параметри за типовете
+  на елементите си. <code>#(1, "Hi!")</code> // Hi! - Здрасти! е от тип
+  <code>#(Int, String)</code>, a <code>#(1.4, 10, 48)</code> е от тип
+  <code>#(Float, Int, Int)</code>. </p>
+<p> N-торките се използват най-често, за да връщат 2 или 3 стойности от дадена
+  функция. Често е по-ясно да се използва <em>потребителски тип</em> (custom
+  type) там, където е възможно да се ползва n-торка. Ще разгледаме потребителски
+  типове в следващия урок. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let triple = #(1, 2.2, "three")
+  io.debug(triple)
+
+  let #(a, _, _) = triple
+  io.debug(a)
+  io.debug(triple.1)
+}
+</code><a class="lesson-snippet-link" href="/data-types/tuples" title="Експериментирайте с Tuples в браузъра" aria-label="Експериментирайте с Tuples в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-custom-types"><a href="#data-types-custom-types" class="link"><h2 class="lesson-title">Custom types</h2></a><p> Gleam има няколко вградени типа (built-in types), например, <code>Int</code>
+  и <code>String</code>, но <em>потребителските типове</em> (custom types)
+  позволяват създаване на съвсем нови типове. </p>
+<p> Потребителски тип се дефинира с ключовата дума <code>type</code>, следвана
+  от името на типа и по един <em>конструктор</em> (constructor) за всеки
+  <em>вариант</em> (variant) на типа. И името на типа, и имената на
+  конструкторите започват с главна буква. </p>
+<p> Възможно е да правим <em>съпоставяне с шаблон</em> (pattern matching) с
+  <code>case</code> израз върху вариантите на потребителски типове. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type Season {
+  Spring
+  Summer
+  Autumn
+  Winter
+}
+
+pub fn main() {
+  io.debug(weather(Spring))
+  io.debug(weather(Autumn))
+}
+
+fn weather(season: Season) -&gt; String {
+  case season {
+    Spring -&gt; "Mild"
+    Summer -&gt; "Hot"
+    Autumn -&gt; "Windy"
+    Winter -&gt; "Cold"
+  }
+}
+</code><a class="lesson-snippet-link" href="/data-types/custom-types" title="Експериментирайте с Custom types в браузъра" aria-label="Експериментирайте с Custom types в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-records"><a href="#data-types-records" class="link"><h2 class="lesson-title">Records</h2></a><p> Всеки вариант (variant) на потребителски тип може да пази допълнителни данни
+  в себе си. В този случай вариантът се нарича <em>record</em>. </p>
+<p> Полетата на record може да получат етикети (labels), подобно на аргументите
+  на функция, и е по желание да се използват при извикване на конструктора.
+  Обикновено етикетите се използват за варианти, които ги дефинират. </p>
+<p> Често се дефинират потребителски типове само с един вариант, който пази
+  данни. Това е еквивалентът в Gleam на <code>struct</code> или
+  <code>object</code> от други езици за програмиране. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type SchoolPerson {
+  Teacher(name: String, subject: String)
+  Student(String)
+}
+
+pub fn main() {
+  let teacher1 = Teacher("Mr Schofield", "Physics")
+  let teacher2 = Teacher(name: "Miss Percy", subject: "Physics")
+  let student1 = Student("Koushiar")
+  let student2 = Student("Naomi")
+  let student3 = Student("Shaheer")
+
+  let school = [teacher1, teacher2, student1, student2, student3]
+  io.debug(school)
+}
+</code><a class="lesson-snippet-link" href="/data-types/records" title="Експериментирайте с Records в браузъра" aria-label="Експериментирайте с Records в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-record-accessors"><a href="#data-types-record-accessors" class="link"><h2 class="lesson-title">Record accessors</h2></a><p> Синтаксисът <code>record.field_label</code> (<code>record</code> - запис,
+  <code>field_label</code> - етикет на поле) може да се използва, за да вземем
+  стойност от поле на потребителски тип, който е record. </p>
+<p> Синтаксисът <code>record.field_label</code> може да се използва само за
+  полета с едно и също име, които са на една и съща позиция и са от един и същи
+  тип във всички варианти на потребителския тип. </p>
+<p> Полето <code>name</code> (име) е на първа позиция и е от тип
+  <code>String</code> във всички варианти, затова можем да достъпваме
+  <code>record.name</code>. </p>
+<p> Полето <code>subject</code> (предмет) липсва във варианта
+  <code>Student</code>, затова <code>record.subject</code> не може да се
+  използва с никой вариант от тип <code>SchoolPerson</code> (човек в училище).
+  Разокоментирайте реда с <code>teacher.subject</code> (<code>teacher</code> -
+  учител), за да видите грешката при компилация от опит да се използва този
+  accessor. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type SchoolPerson {
+  Teacher(name: String, subject: String)
+  Student(name: String)
+}
+
+pub fn main() {
+  let teacher = Teacher("Mr Schofield", "Physics")
+  let student = Student("Koushiar")
+
+  io.debug(teacher.name)
+  io.debug(student.name)
+  // io.debug(teacher.subject)
+}
+</code><a class="lesson-snippet-link" href="/data-types/record-accessors" title="Експериментирайте с Record accessors в браузъра" aria-label="Експериментирайте с Record accessors в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-record-pattern-matching"><a href="#data-types-record-pattern-matching" class="link"><h2 class="lesson-title">Record pattern matching</h2></a><p> Възможно е да правим <em>съпоставяне с шаблони</em> (pattern matching) върху
+  record. Това ни позволява да извлечем стойностите на няколко полета от record
+  в отделни променливи, подобно на съпоставяне с шаблони за n-торки или списъци.
+</p>
+<p> Ключовата дума <code>let</code> може да съвпада само с потребителски типове,
+  които имат само един вариант. За типове с повече варианти, е нужно да се
+  използва <code>case</code> израз. </p>
+<p> Възможно е да се използват долната черта <code>_</code> или шаблонът с
+  разгъване <code>..</code>, за да се игнорират полета, които не са ни нужни.
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type Fish {
+  Starfish(name: String, favourite_color: String)
+  Jellyfish(name: String, jiggly: Bool)
+}
+
+pub fn main() {
+  let lucy = Starfish("Lucy", "Pink")
+
+  case lucy {
+    Starfish(_, favourite_color) -&gt; io.debug(favourite_color)
+    Jellyfish(name, ..) -&gt; io.debug(name)
+  }
+}
+</code><a class="lesson-snippet-link" href="/data-types/record-pattern-matching" title="Експериментирайте с Record pattern matching в браузъра" aria-label="Експериментирайте с Record pattern matching в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-record-updates"><a href="#data-types-record-updates" class="link"><h2 class="lesson-title">Record updates</h2></a><p> Синтаксисът за актуализиране на record може да се използва, за да се създаде
+  нов record, базиран на вече съществуващ от същия тип, но с променени стойности
+  на някои от полетата му. </p>
+<p> Gleam е език с <em>неизменни</em> (immutable) стойности, затова синтаксисът
+  за актуализация на record не променя оригиналния record по никакъв начин. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type SchoolPerson {
+  Teacher(name: String, subject: String, floor: Int, room: Int)
+}
+
+pub fn main() {
+  let teacher1 = Teacher(name: "Mr Dodd", subject: "ICT", floor: 2, room: 2)
+
+  // Използване на синтаксис за актуализация
+  let teacher2 = Teacher(..teacher1, subject: "PE", room: 6)
+
+  io.debug(teacher1)
+  io.debug(teacher2)
+}
+</code><a class="lesson-snippet-link" href="/data-types/record-updates" title="Експериментирайте с Record updates в браузъра" aria-label="Експериментирайте с Record updates в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-generic-custom-types"><a href="#data-types-generic-custom-types" class="link"><h2 class="lesson-title">Generic custom types</h2></a><p> Както функциите, потребителските типове (custom types) може да са
+  <em>обобщени</em> (generic), т.е. да приемат типове като параметри. </p>
+<p> Тук е дефиниран обобщен тип <code>Option</code> (опция), който се използва,
+  за да представи стойност, която или я има, или я няма. Този тип е много
+  полезен! Модулът <a href="https://hexdocs.pm/gleam_stdlib/gleam/option.html"
+    target="_blank">
+    <code>gleam/option</code>
+  </a> го дефинира, така че може да го използвате в Gleam проекти. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>pub type Option(inner) {
+  Some(inner)
+  None
+}
+
+// Опция от символен низ
+pub const name: Option(String) = Some("Annah")
+
+//Опция от цяло число
+pub const level: Option(Int) = Some(10)
+</code><a class="lesson-snippet-link" href="/data-types/generic-custom-types" title="Експериментирайте с Generic custom types в браузъра" aria-label="Експериментирайте с Generic custom types в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-nil"><a href="#data-types-nil" class="link"><h2 class="lesson-title">Nil</h2></a><p>
+  <code>Nil</code> (нула, празно) е единичен (unit) тип в Gleam. Това е
+  стойността, която връщат функциите, които нямат друга стойност за връщане, тъй
+  като всички функции в Gleam е задължително да връщат нещо.
+</p>
+<p>
+  <code>Nil</code> не е валидна стойност за никой друг тип. Затова стойностите в
+  Gleam не може да са <code>null</code> (нула, празно). Ако дадена стойност е от
+  тип <code>Nil</code>, значи стойността ѝ е <code>Nil</code>. Ако е от някакъв
+  друг тип, значи стойността ѝ не е <code>Nil</code>.
+</p>
+<p> Разокоментирайте реда, в който се присвоява <code>Nil</code> на променлива,
+  чийто тип не е съвместим с него, за да видите грешка при компилация. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let x = Nil
+  io.debug(x)
+
+  // let y: List(String) = Nil
+
+  let result = io.println("Hello!")
+  io.debug(result == Nil)
+}
+</code><a class="lesson-snippet-link" href="/data-types/nil" title="Експериментирайте с Nil в браузъра" aria-label="Експериментирайте с Nil в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-results"><a href="#data-types-results" class="link"><h2 class="lesson-title">Results</h2></a><p> Gleam не използва <em>изключения</em> (exceptions), вместо това
+  пресмятанията (computations), които може да са успешни (succeed) или да се
+  провалят (fail), връщат стойност от вградения тип
+  <code>Result(value, error)</code> (резултат - стойност, грешка). Този тип има
+  два варианта (variants): </p>
+<ul>
+  <li>
+    <code>Ok</code> (добре, успешно), който съдържа връщаната стойност (return
+    value) при успех на пресмятането.
+  </li>
+  <li>
+    <code>Error</code> (грешка), който съдържа причината за неуспеха на
+    пресмятането.
+  </li>
+</ul>
+<p> Типът е обобщен (generic) с два тип-параметъра - един за стойността при
+  успех и един за грешката. По този начин <code>Result</code> може да съдържа
+  стойности от произволни типове при успех или неуспех. </p>
+<p> Обикновено програмите или библиотеките на Gleam дефинират потребителски тип
+  (custom type) с по един вариант (variant) за всяка възможна грешка заедно с
+  информация за грешката, която би била полезна на програмиста. </p>
+<p> Това е предимство пред изключенията (exceptions), защото веднага става ясно
+  какви грешки може да върне дадена функция и компилаторът ще се увери, че се
+  обработват. Край на неприятните изненади с неочаквани изключения! </p>
+<p> Стойността на <code>Result</code> може да се обработва чрез <em>съпоставяне
+    с шаблони</em> (pattern matching) в <code>case</code> израз, но с оглед на
+  това колко често функциите връщат <code>Result</code>, това може да стане
+  тромаво. Кодът на Gleam обикновено използва стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/result.html" target="_blank">
+    <code>gleam/result</code>
+  </a> и <code>use</code> изрази за работа с <code>Result</code>, и двете от
+  които ще разгледаме в следващите глави. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+
+pub fn main() {
+  let _ = io.debug(buy_pastry(10))
+  let _ = io.debug(buy_pastry(8))
+  let _ = io.debug(buy_pastry(5))
+  let _ = io.debug(buy_pastry(3))
+}
+
+pub type PurchaseError {
+  NotEnoughMoney(required: Int)
+  NotLuckyEnough
+}
+
+fn buy_pastry(money: Int) -&gt; Result(Int, PurchaseError) {
+  case money &gt;= 5 {
+    True -&gt;
+      case int.random(4) == 0 {
+        True -&gt; Error(NotLuckyEnough)
+        False -&gt; Ok(money - 5)
+      }
+    False -&gt; Error(NotEnoughMoney(required: 5))
+  }
+}
+</code><a class="lesson-snippet-link" href="/data-types/results" title="Експериментирайте с Results в браузъра" aria-label="Експериментирайте с Results в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="data-types-bit-arrays"><a href="#data-types-bit-arrays" class="link"><h2 class="lesson-title">Bit arrays</h2></a><p>
+  <em>Битовите масиви</em> (bit arrays) представляват поредица от 1-ци и 0-ли и
+  са удобен синтаксис за конструиране и манипулиране на двоични данни.
+</p>
+<p> Всеки сегмент на битов масив може да се зададат опции за това как е
+  представен. </p>
+<ul>
+  <li>
+    <code>size</code> (размер) - размерът на сегмента в битове.
+  </li>
+  <li>
+    <code>unit</code> (единица) - броят битове, от които стойността за
+    <code>size</code> е кратна.
+  </li>
+  <li>
+    <code>bits</code> (битове) - влаложен битов масив с произволен размер.
+  </li>
+  <li>
+    <code>bytes</code> (байтове) - влаложен битов масив, подравнен към граници
+    на байтове.
+  </li>
+  <li>
+    <code>float</code> (число с плаваща запетая) - 64-битово число с плаваща
+    запетая.
+  </li>
+  <li>
+    <code>int</code> (цяло число) - цяло число, чийто размер по подразбиране е 8
+    бита.
+  </li>
+  <li>
+    <code>big</code> (голям) - голям ендиан (big endian).
+  </li>
+  <li>
+    <code>little</code> (малък) - малък ендиан (little endian).
+  </li>
+  <li>
+    <code>native</code> (платформен) - ендианът (endianness) на процесора.
+  </li>
+  <li>
+    <code>utf8</code> - UTF8- енкодиран текст.
+  </li>
+  <li>
+    <code>utf16</code> - UTF16- енкодиран текст.
+  </li>
+  <li>
+    <code>utf32</code> - UTF32- енкодиран текст.
+  </li>
+  <li>
+    <code>utf8_codepoint</code> (UTF8 кодова точка) - UTF8 кодова точка.
+  </li>
+  <li>
+    <code>utf16_codepoint</code> (UTF16 кодова точка) - UTF16 кодова точка.
+  </li>
+  <li>
+    <code>utf32_codepoint</code> (UTF32 кодова точка) - UTF32 кодова точка.
+  </li>
+  <li>
+    <code>signed</code> (със знак) - число със знак.
+  </li>
+  <li>
+    <code>unsigned</code> (без знак) - число без знак.
+  </li>
+</ul>
+<p> Може да подадем множество опции на сегмент като ги разделим с тирета:
+  <code>x:unsigned-little-size(2)</code>. </p>
+<p> Битовите масиви имат ограничена поддръжка, когато се компилират за
+  JavaScript, не всички опции може да се използват. Пълна поддръжка ще се
+  имплементира в бъдеще. </p>
+<p> За повече информация за битовите масиви вижте <a
+    href="https://www.erlang.org/doc/programming_examples/bit_syntax.html">документацията
+    на Erlang за синтаксиса им</a>. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  // 8-битово цяло число. В двоичен вид: 00000011
+  io.debug(&lt;&lt;3&gt;&gt;)
+  io.debug(&lt;&lt;3&gt;&gt; == &lt;&lt;3:size(8)&gt;&gt;)
+
+  // 16-битово цяло число. В двоичен вид: 0001100000000011
+  io.debug(&lt;&lt;6147:size(16)&gt;&gt;)
+
+  // Битов масив с UTF8 данни
+  io.debug(&lt;&lt;"Hello, Joe!":utf8&gt;&gt;)
+
+  // Конкатенация
+  let first = &lt;&lt;4&gt;&gt;
+  let second = &lt;&lt;2&gt;&gt;
+  io.debug(&lt;&lt;first:bits, second:bits&gt;&gt;)
+}
+</code><a class="lesson-snippet-link" href="/data-types/bit-arrays" title="Експериментирайте с Bit arrays в браузъра" aria-label="Експериментирайте с Bit arrays в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="chapter-between-separator"><h3 id="standard-library" class="chapter-title">Standard library</h3><hr class="chapter-separator"><article class="lesson" id="standard-library-standard-library-package"><a href="#standard-library-standard-library-package" class="link"><h2 class="lesson-title">Standard library package</h2></a><p> Стандартната библиотека на Gleam е обикновен Gleam пакет, публикуван в
+  хранилището <a href="https://hex.pm">Hex</a>. Бихте могли да не я използвате,
+  но почти всички Gleam проекти зависят от нея. </p>
+<p> Всички модули, които сме импортирали досега в този урок, например <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/io.html" target="_blank">
+    <code>gleam/io</code>
+  </a>, са от стандартната библиотека. </p>
+<p> Цялата документация за стандартната библиотека е достъпна в <a
+    href="https://hexdocs.pm/gleam_stdlib/">HexDocs</a>. Сега ще разгледаме
+  някои от най-често използваните модули. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  io.println("Hello, Joe!")
+  io.println("Hello, Mike!")
+}
+</code><a class="lesson-snippet-link" href="/standard-library/standard-library-package" title="Експериментирайте с Standard library package в браузъра" aria-label="Експериментирайте с Standard library package в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="standard-library-list-module"><a href="#standard-library-list-module" class="link"><h2 class="lesson-title">List module</h2></a><p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/list.html" target="_blank">
+    <code>gleam/list</code>
+  </a> съдържа функции за работа със списъци. Gleam програмите често ще я
+  ползват и различните ѝ функции ще играят ролята на цикли за работа със
+  списъци. </p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/list.html#map" target="_blank">
+    <code>map</code>
+  </a> създава нов списък като извиква подадена функция за всеки елемент на
+  подадения списък.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/list.html#filter"
+    target="_blank">
+    <code>filter</code>
+  </a> (филтриране) създава нов списък, съдържащ само тези елементи на подадения
+  списък, за които подадената функция връща <code>True</code> (вярно).
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/list.html#fold"
+    target="_blank">
+    <code>fold</code>
+  </a> (сгъване?) комбинира всички елементи на списък в една стойност като
+  извиква подадена функция отляво надясно за всеки елемент, подавайки резултата
+  от предишното ѝ извикване като аргумент на следващото.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/list.html#find"
+    target="_blank">
+    <code>find</code>
+  </a> (намиране) връща първия елемент на подадения списък, за който подадената
+  функция връща <code>True</code> (вярно).
+</p>
+<p> Струва си да се запознаете с всички функции в този модул, защото ще ги
+  използвате често, когато пишете Gleam код! </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/list
+
+pub fn main() {
+  let ints = [0, 1, 2, 3, 4, 5]
+
+  io.println("=== map ===")
+  io.debug(list.map(ints, fn(x) { x * 2 }))
+
+  io.println("=== filter ===")
+  io.debug(list.filter(ints, fn(x) { x % 2 == 0 }))
+
+  io.println("=== fold ===")
+  io.debug(list.fold(ints, 0, fn(count, e) { count + e }))
+
+  io.println("=== find ===")
+  let _ = io.debug(list.find(ints, fn(x) { x &gt; 3 }))
+  io.debug(list.find(ints, fn(x) { x &gt; 13 }))
+}
+</code><a class="lesson-snippet-link" href="/standard-library/list-module" title="Експериментирайте с List module в браузъра" aria-label="Експериментирайте с List module в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="standard-library-result-module"><a href="#standard-library-result-module" class="link"><h2 class="lesson-title">Result module</h2></a><p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/result.html" target="_blank">
+    <code>gleam/result</code>
+  </a> съдържа функции за работа с <code>Result</code>. Gleam програмите ще я
+  ползват често, за да се избегне прекомерното влагане на <code>case</code>
+  изрази при извикване на функции, които може да се провалят (fail). </p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/result.html#map"
+    target="_blank">
+    <code>map</code>
+  </a> актуализира стойността в <code>Ok</code> на <code>Result</code>, като ѝ
+  прилага подадена функция. Ако <code>Result</code>-ът е <code>Error</code>
+  (грешка), функцията не се извиква.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/result.html#try"
+    target="_blank">
+    <code>try</code>
+  </a> извиква функция, която връща <code>Result</code>, за стойността в
+  <code>Ok</code> на <code>Result</code>. Ако <code>Result</code>-ът е
+  <code>Error</code> (грешка), функцията не се извиква. Това е удобно за верижно
+  извикване на функции, които може да се провалят (fail), една след друга,
+  спирайки на първата грешка.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/result.html#unwrap"
+    target="_blank">
+    <code>unwrap</code>
+  </a> взима стойността при успех от <code>Result</code> или връща стойност по
+  подразбиране, ако е <code>Error</code>.
+</p>
+<p> Функциите за работа с <code>Result</code> често се използват заедно с
+  конвейери (pipelines), за да се верижно извикат няколко функции, връщащи
+  <code>Result</code>. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/int
+import gleam/io
+import gleam/result
+
+pub fn main() {
+  io.println("=== map ===")
+  let _ = io.debug(result.map(Ok(1), fn(x) { x * 2 }))
+  let _ = io.debug(result.map(Error(1), fn(x) { x * 2 }))
+
+  io.println("=== try ===")
+  let _ = io.debug(result.try(Ok("1"), int.parse))
+  let _ = io.debug(result.try(Ok("no"), int.parse))
+  let _ = io.debug(result.try(Error(Nil), int.parse))
+
+  io.println("=== unwrap ===")
+  io.debug(result.unwrap(Ok("1234"), "default"))
+  io.debug(result.unwrap(Error(Nil), "default"))
+
+  io.println("=== pipeline ===")
+  int.parse("-1234")
+  |&gt; result.map(int.absolute_value)
+  |&gt; result.try(int.remainder(_, 42))
+  |&gt; io.debug
+}
+</code><a class="lesson-snippet-link" href="/standard-library/result-module" title="Експериментирайте с Result module в браузъра" aria-label="Експериментирайте с Result module в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="standard-library-dict-module"><a href="#standard-library-dict-module" class="link"><h2 class="lesson-title">Dict module</h2></a><p> Стандартната библиотека <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html"><code>gleam/dict</code>
+  </a> (<code>dict</code> - речник) дефинира типа <code>Dict</code> (речник) и
+  функции за работа с него. Речникът е колекция от ключове и стойности, наричана
+  още хеш-таблица (hash map/table) в други езици за програмиране. </p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#new" target="_blank">
+    <code>new</code>
+  </a> (нов) и <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#from_list"
+    target="_blank">
+    <code>from_list</code>
+  </a> (от списък) могат да се ползват за създаване на речници.
+</p>
+<p>
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#insert"
+    target="_blank">
+    <code>insert</code>
+  </a> (вмъкване) и <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#delete"
+    target="_blank">
+    <code>delete</code>
+  </a> (изтриване) служат за добавяне и премахване на елементи от речник.
+</p>
+<p> Както списъците, речниците са <em>неизменни</em> (immutable). При добавяне
+  или премахване на елемент, се връща нов речник с добавения или премахнатия
+  елемент. </p>
+<p> Речниците не са наредени! Ако изглежда, че елементите са в някакъв ред, това
+  е случайно и не бива да се разчита на него. Редът им може да се промени без
+  предупреждение в бъдещи версии или в различни среди за изпълнение. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/dict
+import gleam/io
+
+pub fn main() {
+  let scores = dict.from_list([#("Lucy", 13), #("Drew", 15)])
+  io.debug(scores)
+
+  let scores =
+    scores
+    |&gt; dict.insert("Bushra", 16)
+    |&gt; dict.insert("Darius", 14)
+    |&gt; dict.delete("Drew")
+  io.debug(scores)
+}
+</code><a class="lesson-snippet-link" href="/standard-library/dict-module" title="Експериментирайте с Dict module в браузъра" aria-label="Експериментирайте с Dict module в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="standard-library-option-module"><a href="#standard-library-option-module" class="link"><h2 class="lesson-title">Option module</h2></a><p> В Gleam стойностите не може да са <code>null</code>, затова стандартната
+  библиотека <a href="https://hexdocs.pm/gleam_stdlib/gleam/option.html"
+    target="_blank">
+    <code>gleam/option</code>
+  </a> дефинира типа <a
+    href="https://hexdocs.pm/gleam_stdlib/gleam/option.html#Option"
+    target="_blank">
+    <code>Option</code>
+  </a>, (опция) който може да се използва, за да представи стойност, която или я
+  има, или я няма. </p>
+<p> Типът <code>Option</code> е много подобен на <code>Result</code>, но няма
+  стойност за грешка (error). В някои езици за програмиране функциите връщат
+  <code>Option</code>, когато няма детайли за грешката, но Gleam винаги използва
+  <code>Result</code>. Така всички функции, които могат да се провалят (fail) са
+  консистентни, както и не се налага да се пише много излишен код за функции,
+  които използват и двата типа. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/option.{type Option, None, Some}
+
+pub type Person {
+  Person(name: String, pet: Option(String))
+}
+
+pub fn main() {
+  let person_with_pet = Person("Al", Some("Nubi"))
+  let person_without_pet = Person("Maria", None)
+
+  io.debug(person_with_pet)
+  io.debug(person_without_pet)
+}
+</code><a class="lesson-snippet-link" href="/standard-library/option-module" title="Експериментирайте с Option module в браузъра" aria-label="Експериментирайте с Option module в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="chapter-between-separator"><h3 id="advanced-features" class="chapter-title">Advanced features</h3><hr class="chapter-separator"><article class="lesson" id="advanced-features-opaque-types"><a href="#advanced-features-opaque-types" class="link"><h2 class="lesson-title">Opaque types</h2></a><p>
+  <em>Непрозрачните типове</em> (opaque types) са потребителски типове, самият
+  тип е публичен (public) и може да се използва и от други модули, но
+  конструкторите му са частни (private) и могат да се използват само в модула, в
+  който е дефиниран типът. По този начин другите модули не може да конструират
+  стойности от този тип, нито да правят <em>съпоставяне с шаблони</em> върху
+  него.
+</p>
+<p> Това е полезно, когато създаваме типове с <em>интелигентни конструктори</em>
+  (smart constructors). Интелигентният конструктор е функция, която създава
+  стойност от даден тип, но с повече ограничения от тези, които би имало, ако
+  програмистът можеше директно да извика конструкторите на типа. Така е по-
+  лесно да се гарантира, че типът се използва правилно. </p>
+<p> Например, този потребителски тип <code>PositiveInt</code> (положително цяло
+  число) е непрозрачен (opaque). Другите модули е нужно да използват функцията
+  <code>new</code> (нов) за да конструират стойност от този тип. Тази функция
+  гарантира, че цялото число е положително. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let positive = new(1)
+  let zero = new(0)
+  let negative = new(-1)
+
+  io.debug(to_int(positive))
+  io.debug(to_int(zero))
+  io.debug(to_int(negative))
+}
+
+pub opaque type PositiveInt {
+  PositiveInt(inner: Int)
+}
+
+pub fn new(i: Int) -&gt; PositiveInt {
+  case i &gt;= 0 {
+    True -&gt; PositiveInt(i)
+    False -&gt; PositiveInt(0)
+  }
+}
+
+pub fn to_int(i: PositiveInt) -&gt; Int {
+  i.inner
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/opaque-types" title="Експериментирайте с Opaque types в браузъра" aria-label="Експериментирайте с Opaque types в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-use"><a href="#advanced-features-use" class="link"><h2 class="lesson-title">Use</h2></a><p> Gleam няма изключения (exceptions), макроси (macros), type classes (класове
+  типове?), ранно връщане от функции (early returns) и разнообразни други
+  инструменти, залагайки изцяло на функции, които са first-class citizens и
+  <em>съпоставяне с шаблони</em> (pattern matching). Това прави кода на Gleam
+  по-лесен за разбиране, но понякога води до прекомерно влагане (indentation).
+</p>
+<p>
+  <code>use</code> изразите в Gleam помагат да пишем код с функции за обратна
+  връзка (callbacks) без прекомерно влагане, както е показано в кода.
+</p>
+<p> Функцията от по-висок ред (higher order function), която се извиква стои
+  отдясно на оператора <code>&lt;-</code>. Тази функция е задължително да приема
+  функция за обратна връзка (callback) като последен аргумент. </p>
+<p> Имената на аргументите на функцията за обратна връзка (callback) се пишат
+  отляво на оператора <code>&lt;-</code>. Функцията може да приема произволен
+  брой аргументи, включително и нула. </p>
+<p> Целият останал код в обхващащия го блок <code class="hljs">{}</code> става
+  тяло на функцията за обратна връзка (callback). </p>
+<p>
+  <code>use</code> е много мощен и полезен инструмент, но прекомерното му
+  използване може да направи кода неразбираем, особено за начинаещи. Обикновено
+  кодът е по-ясен, ако използваме нормалния синтаксис за извикване на функции!
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/result
+
+pub fn main() {
+  let _ = io.debug(without_use())
+  let _ = io.debug(with_use())
+}
+
+pub fn without_use() {
+  result.try(get_username(), fn(username) {
+    result.try(get_password(), fn(password) {
+      result.map(log_in(username, password), fn(greeting) {
+        greeting &lt;&gt; ", " &lt;&gt; username
+      })
+    })
+  })
+}
+
+pub fn with_use() {
+  use username &lt;- result.try(get_username())
+  use password &lt;- result.try(get_password())
+  use greeting &lt;- result.map(log_in(username, password))
+  greeting &lt;&gt; ", " &lt;&gt; username
+}
+
+// Ето няколко примерни функции: 
+
+fn get_username() {
+  Ok("alice")
+}
+
+fn get_password() {
+  Ok("hunter2")
+}
+
+fn log_in(_username: String, _password: String) {
+  Ok("Welcome")
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/use" title="Експериментирайте с Use в браузъра" aria-label="Експериментирайте с Use в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-use-sugar"><a href="#advanced-features-use-sugar" class="link"><h2 class="lesson-title">Use sugar</h2></a><p>
+  <code>use</code> изразите са синтактична захар (syntactic sugar) за обикновено
+  извикване на функция и анонимна функция (anonymous function).
+</p>
+<p> Този код: </p>
+<pre>
+  use a, b <- my_function
+  next(a)
+  next(b) 
+  </pre>
+<p> се преобразува до този код: </p>
+<pre>
+  my_function(fn(a, b) {
+  next(a)
+  next(b)
+  })
+  </pre>
+<p> За да сме сигурни, че кодът ни с <code>use</code> работи и е възможно
+  най-разбираем, в идеалния случай в дясната част на израза трябва да има само
+  извикване на функция, a не конвейер (pipeline) или друг израз, защото е
+  по-трудно за четене. </p>
+<p>
+  <code>use</code> е израз (expression), както всичко друго в Gleam, затова може
+  да го слагаме в блокове.
+</p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+import gleam/result
+
+pub fn main() {
+  let x = {
+    use username &lt;- result.try(get_username())
+    use password &lt;- result.try(get_password())
+    use greeting &lt;- result.map(log_in(username, password))
+    greeting &lt;&gt; ", " &lt;&gt; username
+  }
+
+  case x {
+    Ok(greeting) -&gt; io.println(greeting)
+    Error(error) -&gt; io.println("ERROR:" &lt;&gt; error)
+  }
+}
+
+// Ето няколко примерни функции: 
+
+fn get_username() {
+  Ok("alice")
+}
+
+fn get_password() {
+  Ok("hunter2")
+}
+
+fn log_in(_username: String, _password: String) {
+  Ok("Welcome")
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/use-sugar" title="Експериментирайте с Use sugar в браузъра" aria-label="Експериментирайте с Use sugar в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-todo"><a href="#advanced-features-todo" class="link"><h2 class="lesson-title">Todo</h2></a><p> Ключовата дума <code>todo</code> (за правене) се използва, за да отбележим
+  части от кода, които още не сме имплементирали. </p>
+<p>
+  <code>as "some string"</code> (като "някакъв символен низ") е по желание, но е
+  добре да добавяме съобщение (message), ако имаме повече от един блок,
+  отбелязан като <code>todo</code>.
+</p>
+<p> При използване на <code>todo</code> компилаторът на Gleam ще покаже
+  предупреждение (warning), за да ни подсети, че кодът е незавършен и, ако се
+  опитаме да го стартираме, програмата ще се срине с подаденото съобщение
+  (message). </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>pub fn main() {
+  todo as "I haven't written this code yet!"
+}
+
+pub fn todo_without_reason() {
+  todo
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/todo" title="Експериментирайте с Todo в браузъра" aria-label="Експериментирайте с Todo в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-panic"><a href="#advanced-features-panic" class="link"><h2 class="lesson-title">Panic</h2></a><p> Ключовата дума <code>panic</code> (паника) е подобна на <code>todo</code>,
+  но се използва, за да се срине програмата, когато се стигне до състояние, до
+  което не би трябвало никога да се стига. </p>
+<p> Тази ключова дума почти никога не трябва да се използва! Може да е полезна в
+  първоначални прототипи и скриптове, но използването ѝ в библиотека или в
+  приложение, което ще се ползва в реална среда, е признак за лош дизайн
+  (design). Ако типовете (types) са добре проектирани, системата за проверка на
+  типовете (types) може да се използва, за да се направят такива невалидни
+  състояния непредставими (unrepresentable). </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  print_score(10)
+  print_score(100_000)
+  print_score(-1)
+}
+
+pub fn print_score(score: Int) {
+  case score {
+    score if score &gt; 1000 -&gt; io.println("High score!")
+    score if score &gt; 0 -&gt; io.println("Still working on it")
+    _ -&gt; panic as "Scores should never be negative!"
+  }
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/panic" title="Експериментирайте с Panic в браузъра" aria-label="Експериментирайте с Panic в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-let-assert"><a href="#advanced-features-let-assert" class="link"><h2 class="lesson-title">Let assert</h2></a><p>
+  <code>let assert</code> (нека твърдим/проверяваме/гарантираме) е последният
+  начин умишлено да сринем Gleam програмата си. Той е подобен на ключовата дума
+  <code>panic</code>, с това че срива програмата когато се стигне до състояние,
+  до което не би трябвало да се стига.
+</p>
+<p>
+  <code>let assert</code> е подобен на <code>let</code> по това, че служи за
+  присвояване на стойности на променливи, но е различен с това, че шаблонът може
+  да е <em>частичен</em> (partial). Шаблонът не е нужно да съвпада с всички
+  възможни стойности от типа, от който се присвоява.
+</p>
+<p> Както и при <code>panic</code>, <code>let
+  assert</code> трябва да се използва рядко, вероятно изобщо не бива да се
+  ползва в библиотеки. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub fn main() {
+  let a = unsafely_get_first_element([123])
+  io.debug(a)
+
+  let b = unsafely_get_first_element([])
+  io.debug(b)
+}
+
+pub fn unsafely_get_first_element(items: List(a)) -&gt; a {
+  // Това ще предизвика panic, ако списъкът е празен.
+  // Обикновен `let` не би позволил този частичен шаблон 
+  let assert [first, ..] = items
+  first
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/let-assert" title="Експериментирайте с Let assert в браузъра" aria-label="Експериментирайте с Let assert в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-externals"><a href="#advanced-features-externals" class="link"><h2 class="lesson-title">Externals</h2></a><p> Понякога в проектите си искаме да ползваме код, написан на други езици за
+  програмиране, най-често Erlang и JavaScript, в зависимост от средата за
+  изпълнение (runtime), която ползваме. Gleam позволява да импортираме и да
+  използваме външен код чрез <em>external functions</em> (външни функции) и
+  <em>external types</em> (външни типове). </p>
+<p> External type е тип, който няма конструктори. Gleam не знае как е устроен
+  нито как да се създаде стойност от него. Зне само че съществува такъв тип.
+</p>
+<p> External function (външна функция) е функция, на която е зададен атрибутът
+  <code>@external</code> (външен). Този атрибут инструктира компилатора да
+  използва модулната функция (module function), указана в атрибута, вместо да
+  търси Gleam код за тази функция. </p>
+<p> Компилаторът не може да провери какви са типовете на аргументите и връщаната
+  стойност на функциите в други езици, затова когато използваме атрибута
+  <code>@external</code> (външен), е нужно да указваме типовете (types) в Gleam
+  код. Gleam "вярва", че посочените типове са правилни и грешки в тях биха
+  довели до неочаквано поведение или сривове по време на изпълнение (runtime).
+  Бъдете внимателни! </p>
+<p> Външните функции (external functions) са полезни, но е добре да ги
+  използваме пестеливо. Навсякъде, където е възможно пишете Gleam код! </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+// Тип без Gleam конструктори
+pub type DateTime
+
+// Външна функция, която създава стойност от типа
+@external(javascript, "./my_package_ffi.mjs", "now")
+pub fn now() -&gt; DateTime
+
+// Функцията `now` в `./my_package_ffi.mjs` е такава:
+// export function now() {
+//   return new Date();
+// }
+
+pub fn main() {
+  io.debug(now())
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/externals" title="Експериментирайте с Externals в браузъра" aria-label="Експериментирайте с Externals в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-multi-target-externals"><a href="#advanced-features-multi-target-externals" class="link"><h2 class="lesson-title">Multi target externals</h2></a><p> Може да указваме по няколко external (външни) имплементации за една и съща
+  функция, което ни позволява да я ползваме и с Erlang, и с JavaScript. </p>
+<p> Ако една функция няма external (външна) имплементация за целта (target), за
+  която в момента се компилира, компилаторът ще покаже грешка. </p>
+<p> Винаги се стремете да имплементирате функциите си за всички цели (targets),
+  но не винаги това е възможно заради различия в начина, по който се извършва
+  вход/изход (input/output) и паралелност (concurrency) в Erlang и JavaScript. В
+  Erlang паралелният вход/изход се управлява от средата за изпълнение (runtime)
+  автоматично (transparently), а в JavaScript паралелният вход/изход изисква
+  използването на обещания (promises) или функции за обратна връзка (callbacks).
+  Ако вашият код е написан в стил Erlang, обикновено е невъзможно да се
+  имплементира и в JavaScript. Ако се използват функции за обратна връзка, няма
+  да е съвместим с повечето Gleam и Erlang код, защото така всеки код, който
+  извиква тази функция също ще е нужно да ползва функции за обратна връзка. </p>
+<p> Библиотеките, които ползват паралелен вход/изход (I/O) обикновено е нужно да
+  изберат дали ще поддържат Erlang или JavaScript, документирайки този избор в
+  README файла на библиотеката. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+pub type DateTime
+
+@external(erlang, "calendar", "local_time")
+@external(javascript, "./my_package_ffi.mjs", "now")
+pub fn now() -&gt; DateTime
+
+pub fn main() {
+  io.debug(now())
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/multi-target-externals" title="Експериментирайте с Multi target externals в браузъра" aria-label="Експериментирайте с Multi target externals в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="advanced-features-external-gleam-fallbacks"><a href="#advanced-features-external-gleam-fallbacks" class="link"><h2 class="lesson-title">External gleam fallbacks</h2></a><p> Една функция може да има и Gleam имплементация и external (външна)
+  имплементация. Ако има external имплементация за целта (target), за която се
+  компилира в момента, тя ще бъде използвана. Иначе ще се ползва Gleam
+  имплементацията. </p>
+<p> Това е полезно, ако една функция може да се имплементира в Gleam, но за една
+  от целите (targets) имаме оптимизирана имплементация. Например, виртуалната
+  машина на Erlang (Erlang VM) има вградена функция, която обръща списък
+  (reverse). Тази функция е имплементирана в нативен код. Кодът тук я използва,
+  когато се изпълнява в Erlang, тъй като тогава е налична. </p>
+<pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
+
+@external(erlang, "lists", "reverse")
+pub fn reverse_list(items: List(e)) -&gt; List(e) {
+  tail_recursive_reverse(items, [])
+}
+
+fn tail_recursive_reverse(items: List(e), reversed: List(e)) -&gt; List(e) {
+  case items {
+    [] -&gt; reversed
+    [first, ..rest] -&gt; tail_recursive_reverse(rest, [first, ..reversed])
+  }
+}
+
+pub fn main() {
+  io.debug(reverse_list([1, 2, 3, 4, 5]))
+  io.debug(reverse_list(["a", "b", "c", "d", "e"]))
+}
+</code><a class="lesson-snippet-link" href="/advanced-features/external-gleam-fallbacks" title="Експериментирайте с External gleam fallbacks в браузъра" aria-label="Експериментирайте с External gleam fallbacks в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article></section></main><script type="module">
+const mediaPrefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+const themeStorageKey = 'theme';
+
+function getPreferredTheme() {
+  return mediaPrefersDarkTheme.matches ? 'dark' : 'light';
+}
+
+function getAppliedTheme() {
+  return document.documentElement.classList.contains('theme-dark')
+    ? 'dark'
+    : 'light';
+}
+
+function getStoredTheme() {
+  return localStorage.getItem(themeStorageKey);
+}
+
+function storeTheme(selectedTheme) {
+  localStorage.setItem(themeStorageKey, selectedTheme);
+}
+
+function syncStoredTheme(theme) {
+  if (theme === getPreferredTheme()) {
+    // Selected theme is the same as the device's preferred theme, so we can forget this setting.
+    localStorage.removeItem(themeStorageKey);
+  } else {
+    // Remember the selected theme to apply it on the next visit
+    storeTheme(theme);
+  }
+}
+
+function applyTheme(theme, initial = false) {
+  // abort if theme is already applied
+  if (theme === getAppliedTheme()) return;
+  // apply theme css class
+  document.documentElement.classList.toggle('theme-dark', theme === 'dark');
+  document.documentElement.classList.toggle('theme-light', theme !== 'dark');
+}
+
+function setTheme(theme) {
+  syncStoredTheme(theme);
+  applyTheme(theme);
+}
+
+function toggleTheme() {
+  setTheme(getAppliedTheme() === 'dark' ? 'light' : 'dark');
+}
+
+function initThemeEvents() {
+  // Watch the device's preferred theme and update theme if user did not select a theme
+  mediaPrefersDarkTheme.addEventListener('change', () => {
+    // abort if the user already selected a theme
+    if (!!getStoredTheme()) return;
+    // update applied theme accordingly
+    applyTheme(getPreferredTheme());
+  });
+  // Add handlers for theme selection button
+  document
+    .querySelector('.theme-picker')
+    ?.addEventListener('click', toggleTheme);
+}
+
+function initTheme() {
+  // apply stored or preferred theme
+  applyTheme(getStoredTheme() ?? getPreferredTheme());
+  initThemeEvents();
+}
+
+initTheme();
+</script><script src="/js/highlight/highlight-gleam.js" defer="" type="module"></script></body></html>
