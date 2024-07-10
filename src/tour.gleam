@@ -264,6 +264,8 @@ fn write_content(chapters: List(Chapter)) -> snag.Result(Nil) {
 
   use _ <- result.try(write_text(public <> "/.nojekyll", ""))
 
+  use _ <- result.try(write_text(public <> "/CNAME", "gleam-tour-bg.salif.eu"))
+
   Ok(Nil)
 }
 
@@ -1035,7 +1037,7 @@ pub fn render_page_html(page config: PageConfig) -> Html {
       description: "Интерактивно въведение и справочник за езика за програмиране Gleam. Научете Gleam във вашия браузър!",
       image: "https://gleam.run/images/og-image.png",
       title: config.title <> " - Обиколка на езика Gleam",
-      url: "https://tour.gleam.run/" <> config.path,
+      url: "https://gleam-tour-bg.salif.eu/" <> config.path,
       path: config.path,
       meta: [],
       stylesheets: config.stylesheets,
