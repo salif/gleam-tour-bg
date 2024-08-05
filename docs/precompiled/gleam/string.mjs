@@ -1,4 +1,11 @@
-import { Ok, Error, prepend as listPrepend, remainderInt, divideInt } from "../gleam.mjs";
+import {
+  Ok,
+  Error,
+  prepend as listPrepend,
+  CustomType as $CustomType,
+  remainderInt,
+  divideInt,
+} from "../gleam.mjs";
 import * as $iterator from "../gleam/iterator.mjs";
 import * as $list from "../gleam/list.mjs";
 import * as $option from "../gleam/option.mjs";
@@ -30,6 +37,12 @@ import {
 } from "../gleam_stdlib.mjs";
 
 export { byte_size, contains, crop, from_utf_codepoints, to_graphemes };
+
+class Leading extends $CustomType {}
+
+class Trailing extends $CustomType {}
+
+class Both extends $CustomType {}
 
 export function is_empty(str) {
   return str === "";

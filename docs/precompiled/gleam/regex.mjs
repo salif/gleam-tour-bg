@@ -5,7 +5,10 @@ import {
   regex_check as do_check,
   regex_split as do_split,
   regex_scan as do_scan,
+  regex_replace as replace,
 } from "../gleam_stdlib.mjs";
+
+export { replace };
 
 export class Match extends $CustomType {
   constructor(content, submatches) {

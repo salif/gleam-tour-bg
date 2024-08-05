@@ -4,18 +4,19 @@ import {
   bit_array_from_string as from_string,
   length as byte_size,
   bit_array_slice as slice,
-  bit_array_to_string as do_to_string,
   bit_array_concat as concat,
-  encode64,
+  encode64 as base64_encode,
   decode64,
   base16_encode,
   base16_decode,
   bit_array_inspect as inspect,
+  bit_array_to_string as do_to_string,
 } from "../gleam_stdlib.mjs";
 
 export {
   base16_decode,
   base16_encode,
+  base64_encode,
   byte_size,
   concat,
   from_string,
@@ -23,34 +24,8 @@ export {
   slice,
 };
 
-export function to_string(bits) {
-  return do_to_string(bits);
-}
-
-function do_is_utf8(bits) {
-  let $ = to_string(bits);
-  if ($.isOk()) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-export function is_utf8(bits) {
-  return do_is_utf8(bits);
-}
-
 export function append(first, second) {
   return concat(toList([first, second]));
-}
-
-export function base64_encode(input, padding) {
-  let encoded = encode64(input);
-  if (padding) {
-    return encoded;
-  } else {
-    return $string.replace(encoded, "=", "");
-  }
 }
 
 export function base64_decode(encoded) {
@@ -77,4 +52,21 @@ export function base64_url_decode(encoded) {
   let _pipe$1 = $string.replace(_pipe, "-", "+");
   let _pipe$2 = $string.replace(_pipe$1, "_", "/");
   return base64_decode(_pipe$2);
+}
+
+export function is_utf8(bits) {
+  return do_is_utf8(bits);
+}
+
+function do_is_utf8(bits) {
+  let $ = to_string(bits);
+  if ($.isOk()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export function to_string(bits) {
+  return do_to_string(bits);
 }

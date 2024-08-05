@@ -348,8 +348,8 @@ pub fn main() {
 <p> Типовете може да се импортират и по <em>неквалифициран</em> начин, като се
   изброят в израза за импортиране с ключовата дума <code>type</code> пред името
   им. </p>
-<p> В Gleam е по-обичайно да се импортират типове по неквалифициран начин,
-  отколкото функциите да се импортират по неквалифициран начин. </p>
+<p> За разлика от функциите, в Gleam типовете обикновено се импортират по
+  неквалифициран начин. </p>
 <pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/bytes_builder
 import gleam/string_builder.{type StringBuilder}
 
@@ -771,8 +771,8 @@ pub fn main() {
 </code><a class="lesson-snippet-link" href="/flow-control/variable-patterns" title="Експериментирайте с Variable patterns в браузъра" aria-label="Експериментирайте с Variable patterns в браузъра"><i class="snippet-link-icon">&lt;/&gt;</i>Изпълняване на кода</a></pre></article><hr class="lesson-separator"><article class="lesson" id="flow-control-string-patterns"><a href="#flow-control-string-patterns" class="link"><h2 class="lesson-title">String patterns</h2></a><p> Когато съпоставяме със символни низове, операторът <code>&lt;&gt;</code>
   може да се използва за съвпадение със символни низове, започващи с определен
   префикс. </p>
-<p> Шаблонът <code>"hello " <> name</code> съвпада с всеки символен низ, който
-  започва с <code>"hello "</code> и присвоява остатъка от низа на променливата
+<p> Шаблонът <code>"Hello, " &lt;&gt; name</code> съвпада с всеки символен низ, който
+  започва с <code>"Hello, "</code> и присвоява остатъка от низа на променливата
   <code>name</code> (име). </p>
 <pre class="lesson-snippet hljs gleam language-gleam"><code>import gleam/io
 

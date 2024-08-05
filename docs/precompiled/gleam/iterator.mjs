@@ -767,7 +767,7 @@ function update_group_with(el) {
 function group_updater(f) {
   return (groups, elem) => {
     let _pipe = groups;
-    return $dict.update(_pipe, f(elem), update_group_with(elem));
+    return $dict.upsert(_pipe, f(elem), update_group_with(elem));
   };
 }
 
@@ -952,6 +952,8 @@ export function each(iterator, f) {
 
 export function yield$(element, next) {
   return new Iterator(
-    () => { return new Continue(element, next().continuation); },
+    () => {
+      return new Continue(element, () => { return next().continuation(); });
+    },
   );
 }

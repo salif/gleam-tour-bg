@@ -1,4 +1,5 @@
 import { Ok, Error, toList, prepend as listPrepend, CustomType as $CustomType } from "../gleam.mjs";
+import * as $bit_array from "../gleam/bit_array.mjs";
 import * as $dict from "../gleam/dict.mjs";
 import * as $int from "../gleam/int.mjs";
 import * as $list from "../gleam/list.mjs";
@@ -9,7 +10,6 @@ import {
   identity as do_from,
   identity as do_unsafe_coerce,
   decode_bit_array,
-  decode_string,
   classify_dynamic as do_classify,
   decode_int,
   decode_float,
@@ -27,6 +27,7 @@ import {
   tuple_get,
   length as tuple_size,
   decode_map,
+  decode_string,
 } from "../gleam_stdlib.mjs";
 
 export class DecodeError extends $CustomType {
@@ -54,8 +55,8 @@ export function bit_array(data) {
   return decode_bit_array(data);
 }
 
-export function string(data) {
-  return decode_string(data);
+function put_expected(error, expected) {
+  return error.withFields({ expected: expected });
 }
 
 export function classify(data) {
@@ -146,6 +147,25 @@ export function decode1(constructor, t1) {
   };
 }
 
+function push_path(error, name) {
+  let name$1 = from(name);
+  let decoder = any(
+    toList([string, (x) => { return $result.map(int(x), $int.to_string); }]),
+  );
+  let name$2 = (() => {
+    let $ = decoder(name$1);
+    if ($.isOk()) {
+      let name$2 = $[0];
+      return name$2;
+    } else {
+      let _pipe = toList(["<", classify(name$1), ">"]);
+      let _pipe$1 = $string_builder.from_strings(_pipe);
+      return $string_builder.to_string(_pipe$1);
+    }
+  })();
+  return error.withFields({ path: listPrepend(name$2, error.path) });
+}
+
 export function result(decode_ok, decode_error) {
   return (value) => {
     return $result.try$(
@@ -181,25 +201,6 @@ export function result(decode_ok, decode_error) {
   };
 }
 
-function push_path(error, name) {
-  let name$1 = from(name);
-  let decoder = any(
-    toList([string, (x) => { return $result.map(int(x), $int.to_string); }]),
-  );
-  let name$2 = (() => {
-    let $ = decoder(name$1);
-    if ($.isOk()) {
-      let name$2 = $[0];
-      return name$2;
-    } else {
-      let _pipe = toList(["<", classify(name$1), ">"]);
-      let _pipe$1 = $string_builder.from_strings(_pipe);
-      return $string_builder.to_string(_pipe$1);
-    }
-  })();
-  return error.withFields({ path: listPrepend(name$2, error.path) });
-}
-
 export function list(decoder_type) {
   return (dynamic) => {
     return $result.try$(
@@ -221,6 +222,10 @@ function map_errors(result, f) {
     result,
     (_capture) => { return $list.map(_capture, f); },
   );
+}
+
+export function string(data) {
+  return decode_string(data);
 }
 
 export function field(name, inner_type) {
