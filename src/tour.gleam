@@ -293,14 +293,20 @@ fn contents_list_html(chapters: List(Chapter)) -> String {
 
   [
     h("p", [], [
-      text("Търсите ли цялото съдържание на една страница? "),
-      h("a", [#("href", path_everything)], [text("Ще го намерите тук")]),
+      text(
+        "Търсите ли цялото съдържание на една страница? ",
+      ),
+      h("a", [#("href", path_everything)], [
+        text("Ще го намерите тук"),
+      ]),
       text("!"),
     ]),
     ..chapters
   ]
   |> list.append([
-    h("p", [], [h("a", [#("href", path_what_next)], [text("Какво следва…?")])]),
+    h("p", [], [
+      h("a", [#("href", path_what_next)], [text("Какво следва…?")]),
+    ]),
   ])
   |> list.map(render_html)
   |> string.join("\n")
@@ -679,7 +685,9 @@ fn lesson_page_render(lesson: Lesson) -> String {
           h("nav", [#("class", "prev-next")], [
             navlink("Назад", lesson.previous),
             text(" — "),
-            h("a", [#("href", path_table_of_contents)], [text("Съдържание")]),
+            h("a", [#("href", path_table_of_contents)], [
+              text("Съдържание"),
+            ]),
             text(" — "),
             navlink("Напред", lesson.next),
           ]),
@@ -716,7 +724,10 @@ fn slugify_path(path: String) -> String {
 
 /// Renders a lesson item in the everyting page's list
 fn everything_page_lesson_html(lesson: Lesson, index: Int, end_index: Int) {
-  let snippet_link_title = "Експериментирайте с " <> lesson.name <> " в браузъра"
+  let snippet_link_title =
+    "Експериментирайте с "
+    <> lesson.name
+    <> " в браузъра"
 
   let lesson_content =
     h("article", [#("class", "lesson"), #("id", slugify_path(lesson.path))], [

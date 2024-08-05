@@ -3,6 +3,9 @@
 _:
 	@just --list
 
+gleam := "gleam"
+port := ""
+
 [confirm]
 sync-upstream:
 	git switch upstream
@@ -10,17 +13,25 @@ sync-upstream:
 	git remote | xargs -I R git push R upstream
 	git switch -
 
+clean:
+	{{gleam}} clean
+	rm -rf ./docs
+	rm -rf ./wasm-compiler
+
+serve:
+	cd docs && python3 -m http.server {{port}}
+
 download-compiler:
 	./bin/download-compiler
 
 build:
-	gleam run
+	{{gleam}} run --target javascript
 
 test:
-	gleam deps download
-	gleam format --check src test
-	gleam test
-	gleam run
+	{{gleam}} deps download
+	{{gleam}} format --check src test
+	{{gleam}} test
+	{{gleam}} run
 
 [confirm]
 [doc('Publish to GitHub Pages')]
