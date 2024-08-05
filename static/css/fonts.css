@@ -1,28 +1,20 @@
-@font-face {
-  font-family: "Lexend";
-  font-display: swap;
-  font-weight: 400;
-  src: url("https://gleam.run/fonts/Lexend.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Lexend";
-  font-display: swap;
-  font-weight: 700;
-  src: url("https://gleam.run/fonts/Lexend-700.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Outfit";
-  font-display: swap;
-  src: url("https://gleam.run/fonts/Outfit.woff") format("woff");
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-  --font-family-normal: "Outfit", sans-serif;
-  --font-family-title: "Lexend", sans-serif;
+  --font-family-normal: "Nunito", sans-serif;
+  --font-family-title: "Nunito", sans-serif;
 
   --font-size-normal: calc(var(--gap) * 1.5);
   --font-size-small: calc(var(--gap) * 1.2);
   --font-size-extra-small: calc(var(--gap));
+}
+
+p code {
+  font-size: calc(var(--gap) * 1.1);
+}
+
+code, .codeflask__textarea {
+  font-family: "Fira Code", monospace !important;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
 }
