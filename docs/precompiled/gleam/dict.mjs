@@ -15,10 +15,6 @@ export function new$() {
   return do_new();
 }
 
-export function is_empty(dict) {
-  return isEqual(dict, new$());
-}
-
 export function get(from, get) {
   return do_get(from, get);
 }
@@ -199,16 +195,12 @@ export function drop(loop$dict, loop$disallowed_keys) {
   }
 }
 
-export function upsert(dict, key, fun) {
+export function update(dict, key, fun) {
   let _pipe = dict;
   let _pipe$1 = get(_pipe, key);
   let _pipe$2 = $option.from_result(_pipe$1);
   let _pipe$3 = fun(_pipe$2);
   return ((_capture) => { return insert(dict, key, _capture); })(_pipe$3);
-}
-
-export function update(dict, key, fun) {
-  return upsert(dict, key, fun);
 }
 
 function do_fold(loop$list, loop$initial, loop$fun) {

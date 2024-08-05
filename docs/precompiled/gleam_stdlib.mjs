@@ -34,7 +34,7 @@ export function parse_int(value) {
 }
 
 export function parse_float(value) {
-  if (/^[-+]?(\d+)\.(\d+)([eE][-+]?\d+)?$/.test(value)) {
+  if (/^[-+]?(\d+)\.(\d+)$/.test(value)) {
     return new Ok(parseFloat(value));
   } else {
     return new Error(Nil);
@@ -246,31 +246,16 @@ export function split_once(haystack, needle) {
   }
 }
 
-const unicode_whitespaces = [
-  "\u0020", // Space
-  "\u0009", // Horizontal tab
-  "\u000A", // Line feed
-  "\u000B", // Vertical tab
-  "\u000C", // Form feed
-  "\u000D", // Carriage return
-  "\u0085", // Next line
-  "\u2028", // Line separator
-  "\u2029", // Paragraph separator
-].join();
-
-const left_trim_regex = new RegExp(`^([${unicode_whitespaces}]*)`, "g");
-const right_trim_regex = new RegExp(`([${unicode_whitespaces}]*)$`, "g");
-
 export function trim(string) {
-  return trim_left(trim_right(string));
+  return string.trim();
 }
 
 export function trim_left(string) {
-  return string.replace(left_trim_regex, "");
+  return string.trimLeft();
 }
 
 export function trim_right(string) {
-  return string.replace(right_trim_regex, "");
+  return string.trimRight();
 }
 
 export function bit_array_from_string(string) {
@@ -378,11 +363,7 @@ export function bit_array_slice(bits, position, length) {
   const end = Math.max(position, position + length);
   if (start < 0 || end > bits.length) return new Error(Nil);
   const byteOffset = bits.buffer.byteOffset + start;
-  const buffer = new Uint8Array(
-    bits.buffer.buffer,
-    byteOffset,
-    Math.abs(length),
-  );
+  const buffer = new Uint8Array(bits.buffer.buffer, byteOffset, Math.abs(length));
   return new Ok(new BitArray(buffer));
 }
 
@@ -423,9 +404,7 @@ export function compile_regex(pattern, options) {
 }
 
 export function regex_split(regex, string) {
-  return List.fromArray(
-    string.split(regex).map((item) => (item === undefined ? "" : item)),
-  ); 
+  return List.fromArray(string.split(regex).map(item => item === undefined ? "" : item));
 }
 
 export function regex_scan(regex, string) {
@@ -444,10 +423,6 @@ export function regex_scan(regex, string) {
     return new RegexMatch(content, List.fromArray(submatches));
   });
   return List.fromArray(matches);
-}
-
-export function regex_replace(regex, original_string, replacement) {
-  return original_string.replaceAll(regex, replacement)
 }
 
 export function new_map() {
@@ -508,58 +483,17 @@ export function parse_query(query) {
   }
 }
 
-const b64EncodeLookup = [
-  65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
-  84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106,
-  107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121,
-  122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47,
-];
-
-let b64TextDecoder;
-
-// Implementation based on https://github.com/mitschabaude/fast-base64/blob/main/js.js
-export function encode64(bit_array, padding) {
-  b64TextDecoder ??= new TextDecoder();
-
-  const bytes = bit_array.buffer;
-
-  const m = bytes.length;
-  const k = m % 3;
-  const n = Math.floor(m / 3) * 4 + (k && k + 1);
-  const N = Math.ceil(m / 3) * 4;
-  const encoded = new Uint8Array(N);
-
-  for (let i = 0, j = 0; j < m; i += 4, j += 3) {
-    const y = (bytes[j] << 16) + (bytes[j + 1] << 8) + (bytes[j + 2] | 0);
-    encoded[i] = b64EncodeLookup[y >> 18];
-    encoded[i + 1] = b64EncodeLookup[(y >> 12) & 0x3f];
-    encoded[i + 2] = b64EncodeLookup[(y >> 6) & 0x3f];
-    encoded[i + 3] = b64EncodeLookup[y & 0x3f];
-  }
-
-  let base64 = b64TextDecoder.decode(new Uint8Array(encoded.buffer, 0, n));
-
-  if (padding) {
-    if (k === 1) {
-      base64 += "==";
-    }
-    else if (k === 2) {
-      base64 += "=";
-    }
-  }
-
-  return base64;
+// From https://developer.mozilla.org/en-US/docs/Glossary/Base64
+export function encode64(bit_array) {
+  const binString = String.fromCodePoint(...bit_array.buffer);
+  return btoa(binString);
 }
 
 // From https://developer.mozilla.org/en-US/docs/Glossary/Base64
 export function decode64(sBase64) {
   try {
     const binString = atob(sBase64);
-    const length = binString.length;
-    const array = new Uint8Array(length);
-    for (let i = 0; i < length; i++) {
-        array[i] = binString.charCodeAt(i);
-    }
+    const array = Uint8Array.from(binString, (c) => c.charCodeAt(0));
     return new Ok(new BitArray(array));
   } catch {
     return new Error(Nil);
@@ -798,7 +732,7 @@ export function inspect(v) {
   if (v === false) return "False";
   if (v === null) return "//js(null)";
   if (v === undefined) return "Nil";
-  if (t === "string") return inspectString(v);
+  if (t === "string") return JSON.stringify(v);
   if (t === "bigint" || t === "number") return v.toString();
   if (Array.isArray(v)) return `#(${v.map(inspect).join(", ")})`;
   if (v instanceof List) return inspectList(v);
@@ -816,29 +750,6 @@ export function inspect(v) {
     return `//fn(${args.join(", ")}) { ... }`;
   }
   return inspectObject(v);
-}
-
-function inspectString(str) {
-  let new_str = "\"";
-  for (let i = 0; i < str.length; i++) {
-    let char = str[i];
-    switch (char) {
-      case '\n': new_str += "\\n"; break;
-      case '\r': new_str += "\\r"; break;
-      case '\t': new_str += "\\t"; break;
-      case '\f': new_str += "\\f"; break;
-      case '\\': new_str += "\\\\"; break;
-      case '\"': new_str += "\\\""; break;
-      default:
-        if (char < ' ' || (char > '~' && char < '\u{00A0}')) {
-          new_str += "\\u{" + char.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0") + "}";
-        } else {
-          new_str += char;
-        }
-    }
-  }
-  new_str += "\"";
-  return new_str;
 }
 
 function inspectDict(map) {

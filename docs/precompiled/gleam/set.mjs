@@ -18,10 +18,6 @@ export function size(set) {
   return $dict.size(set.dict);
 }
 
-export function is_empty(set) {
-  return isEqual(set, new$());
-}
-
 export function contains(set, member) {
   let _pipe = set.dict;
   let _pipe$1 = $dict.get(_pipe, member);
@@ -93,14 +89,6 @@ export function from_list(members) {
     (m, k) => { return $dict.insert(m, k, token); },
   );
   return new Set(dict);
-}
-
-export function map(set, fun) {
-  return fold(
-    set,
-    new$(),
-    (acc, member) => { return insert(acc, fun(member)); },
-  );
 }
 
 export function union(first, second) {

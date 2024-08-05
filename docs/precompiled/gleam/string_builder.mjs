@@ -1,4 +1,4 @@
-import { toList, CustomType as $CustomType, isEqual } from "../gleam.mjs";
+import { toList, isEqual } from "../gleam.mjs";
 import * as $list from "../gleam/list.mjs";
 import {
   add as do_append,
@@ -15,8 +15,6 @@ import {
 } from "../gleam_stdlib.mjs";
 
 export { replace };
-
-class All extends $CustomType {}
 
 export function prepend_builder(builder, prefix) {
   return do_append(prefix, builder);

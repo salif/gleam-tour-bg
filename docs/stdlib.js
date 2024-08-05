@@ -36,18 +36,29 @@ fn do_is_utf8(bits: BitArray) -> Bool {
 pub fn to_string(bits: BitArray) -> Result(String, Nil) {
   do_to_string(bits)
 }
+@target(erlang)
 fn unsafe_to_string(a: BitArray) -> String
-@external(javascript, "../gleam_stdlib.mjs", "bit_array_to_string")
+@target(erlang)
 fn do_to_string(bits: BitArray) -> Result(String, Nil) {
   case is_utf8(bits) {
     True -> Ok(unsafe_to_string(bits))
     False -> Error(Nil)
   }
 }
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "bit_array_to_string")
+fn do_to_string(a: BitArray) -> Result(String, Nil)
 @external(javascript, "../gleam_stdlib.mjs", "bit_array_concat")
 pub fn concat(bit_arrays: List(BitArray)) -> BitArray
+pub fn base64_encode(input: BitArray, padding: Bool) -> String {
+  let encoded = encode64(input)
+  case padding {
+    True -> encoded
+    False -> string.replace(encoded, "=", "")
+  }
+}
 @external(javascript, "../gleam_stdlib.mjs", "encode64")
-pub fn base64_encode(input: BitArray, padding: Bool) -> String
+fn encode64(a: BitArray) -> String
 pub fn base64_decode(encoded: String) -> Result(BitArray, Nil) {
   let padded = case byte_size(from_string(encoded)) % 4 {
     0 -> encoded
@@ -279,9 +290,6 @@ pub fn byte_size(builder: BytesBuilder) -> Int {
 pub type Dict(key, value)
 @external(javascript, "../gleam_stdlib.mjs", "map_size")
 pub fn size(dict: Dict(k, v)) -> Int
-pub fn is_empty(dict: Dict(k, v)) -> Bool {
-  dict == new()
-}
 @external(javascript, "../gleam_stdlib.mjs", "map_to_list")
 pub fn to_list(dict: Dict(key, value)) -> List(#(key, value))
 pub fn from_list(list: List(#(k, v))) -> Dict(k, v) {
@@ -426,7 +434,7 @@ pub fn drop(from dict: Dict(k, v), drop disallowed_keys: List(k)) -> Dict(k, v) 
     [x, ..xs] -> drop(delete(dict, x), xs)
   }
 }
-pub fn upsert(
+pub fn update(
   in dict: Dict(k, v),
   update key: k,
   with fun: fn(Option(v)) -> v,
@@ -436,14 +444,6 @@ pub fn upsert(
   |> option.from_result
   |> fun
   |> insert(dict, key, _)
-}
-@deprecated("This function has been renamed to \`upsert\`")
-pub fn update(
-  in dict: Dict(k, v),
-  update key: k,
-  with fun: fn(Option(v)) -> v,
-) -> Dict(k, v) {
-  upsert(dict, key, fun)
 }
 fn do_fold(list: List(#(k, v)), initial: acc, fun: fn(acc, k, v) -> acc) -> acc {
   case list {
@@ -477,7 +477,8 @@ pub fn combine(
     Error(_) -> insert(acc, key, value)
   }
 }`,
-  "gleam/dynamic": `import gleam/bit_array
+  "gleam/dynamic": `@target(erlang)
+import gleam/bit_array
 import gleam/dict.{type Dict}
 import gleam/int
 import gleam/list
@@ -520,7 +521,7 @@ fn map_errors(
 ) -> Result(t, DecodeErrors) {
   result.map_error(result, list.map(_, f))
 }
-@external(javascript, "../gleam_stdlib.mjs", "decode_string")
+@target(erlang)
 fn decode_string(data: Dynamic) -> Result(String, DecodeErrors) {
   bit_array(data)
   |> map_errors(put_expected(_, "String"))
@@ -532,9 +533,13 @@ fn decode_string(data: Dynamic) -> Result(String, DecodeErrors) {
     }
   })
 }
+@target(erlang)
 fn put_expected(error: DecodeError, expected: String) -> DecodeError {
   DecodeError(..error, expected: expected)
 }
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "decode_string")
+fn decode_string(a: Dynamic) -> Result(String, DecodeErrors)
 pub fn classify(data: Dynamic) -> String {
   do_classify(data)
 }
@@ -1133,12 +1138,16 @@ fn do_floor(a: Float) -> Float
 pub fn round(x: Float) -> Int {
   do_round(x)
 }
+@target(erlang)
+fn do_round(a: Float) -> Int
+@target(javascript)
 fn do_round(x: Float) -> Int {
   case x >=. 0.0 {
     True -> js_round(x)
     _ -> 0 - js_round(negate(x))
   }
 }
+@target(javascript)
 @external(javascript, "../gleam_stdlib.mjs", "round")
 fn js_round(a: Float) -> Int
 pub fn truncate(x: Float) -> Int {
@@ -2080,7 +2089,7 @@ fn group_updater(
 ) -> fn(Dict(key, List(element)), element) -> Dict(key, List(element)) {
   fn(groups, elem) {
     groups
-    |> dict.upsert(f(elem), update_group_with(elem))
+    |> dict.update(f(elem), update_group_with(elem))
   }
 }
 pub fn group(
@@ -2203,7 +2212,7 @@ pub fn each(over iterator: Iterator(a), with f: fn(a) -> b) -> Nil {
   |> run
 }
 pub fn yield(element: a, next: fn() -> Iterator(a)) -> Iterator(a) {
-  Iterator(fn() { Continue(element, fn() { next().continuation() }) })
+  Iterator(fn() { Continue(element, next().continuation) })
 }`,
   "gleam/list": `import gleam/dict.{type Dict}
 import gleam/float
@@ -2218,14 +2227,6 @@ fn count_length(list: List(a), count: Int) -> Int {
     [_, ..list] -> count_length(list, count + 1)
     _ -> count
   }
-}
-pub fn count(list: List(a), where predicate: fn(a) -> Bool) -> Int {
-  fold(list, 0, fn(acc, value) {
-    case predicate(value) {
-      True -> acc + 1
-      False -> acc
-    }
-  })
 }
 pub fn reverse(xs: List(a)) -> List(a) {
   do_reverse(xs, [])
@@ -2638,9 +2639,13 @@ fn sequences(
       }
     [new, ..rest] ->
       case compare(prev, new), direction {
-        order.Gt, Descending | order.Lt, Ascending | order.Eq, Ascending ->
+        order.Gt, Descending
+        | order.Lt, Ascending
+        | order.Eq, Ascending ->
           sequences(rest, compare, growing, direction, new, acc)
-        order.Gt, Ascending | order.Lt, Descending | order.Eq, Descending -> {
+        order.Gt, Ascending
+        | order.Lt, Descending
+        | order.Eq, Descending -> {
           let acc = case direction {
             Ascending -> [do_reverse(growing, []), ..acc]
             Descending -> [growing, ..acc]
@@ -2717,8 +2722,8 @@ fn merge_ascendings(
     [first1, ..rest1], [first2, ..rest2] ->
       case compare(first1, first2) {
         order.Lt -> merge_ascendings(rest1, list2, compare, [first1, ..acc])
-        order.Gt | order.Eq ->
-          merge_ascendings(list1, rest2, compare, [first2, ..acc])
+        order.Gt
+        | order.Eq -> merge_ascendings(list1, rest2, compare, [first2, ..acc])
       }
   }
 }
@@ -2733,8 +2738,8 @@ fn merge_descendings(
     [first1, ..rest1], [first2, ..rest2] ->
       case compare(first1, first2) {
         order.Lt -> merge_descendings(list1, rest2, compare, [first2, ..acc])
-        order.Gt | order.Eq ->
-          merge_descendings(rest1, list2, compare, [first1, ..acc])
+        order.Gt
+        | order.Eq -> merge_descendings(rest1, list2, compare, [first1, ..acc])
       }
   }
 }
@@ -2931,10 +2936,8 @@ fn do_window(acc: List(List(a)), l: List(a), n: Int) -> List(List(a)) {
   }
 }
 pub fn window(l: List(a), by n: Int) -> List(List(a)) {
-  case n <= 0 {
-    True -> []
-    False -> do_window([], l, n) |> reverse
-  }
+  do_window([], l, n)
+  |> reverse
 }
 pub fn window_by_2(l: List(a)) -> List(#(a, a)) {
   zip(l, drop(l, 1))
@@ -3254,8 +3257,6 @@ pub fn compare(a: Order, with b: Order) -> Order {
     _, _ -> Gt
   }
 }
-@deprecated("This function is being removed as it is not useful.
-The name may be used for a more helpful function in future.")
 pub fn max(a: Order, b: Order) -> Order {
   case a, b {
     Gt, _ -> Gt
@@ -3263,8 +3264,6 @@ pub fn max(a: Order, b: Order) -> Order {
     _, _ -> b
   }
 }
-@deprecated("This function is being removed as it is not useful.
-The name may be used for a more helpful function in future.")
 pub fn min(a: Order, b: Order) -> Order {
   case a, b {
     Lt, _ -> Lt
@@ -3430,13 +3429,7 @@ pub fn scan(with regex: Regex, content string: String) -> List(Match) {
   do_scan(regex, string)
 }
 @external(javascript, "../gleam_stdlib.mjs", "regex_scan")
-fn do_scan(a: Regex, b: String) -> List(Match)
-@external(javascript, "../gleam_stdlib.mjs", "regex_replace")
-pub fn replace(
-  each pattern: Regex,
-  in string: String,
-  with substitute: String,
-) -> String`,
+fn do_scan(a: Regex, b: String) -> List(Match)`,
   "gleam/result": `import gleam/list
 pub fn is_ok(result: Result(a, e)) -> Bool {
   case result {
@@ -3587,9 +3580,6 @@ pub fn new() -> Set(member) {
 pub fn size(set: Set(member)) -> Int {
   dict.size(set.dict)
 }
-pub fn is_empty(set: Set(member)) -> Bool {
-  set == new()
-}
 pub fn insert(into set: Set(member), this member: member) -> Set(member) {
   Set(dict: dict.insert(set.dict, member, token))
 }
@@ -3623,11 +3613,6 @@ pub fn filter(
   keeping predicate: fn(member) -> Bool,
 ) -> Set(member) {
   Set(dict.filter(in: set.dict, keeping: fn(m, _) { predicate(m) }))
-}
-pub fn map(set: Set(member), with fun: fn(member) -> mapped) -> Set(mapped) {
-  fold(over: set, from: new(), with: fn(acc, member) {
-    insert(acc, fun(member))
-  })
 }
 pub fn drop(from set: Set(member), drop disallowed: List(member)) -> Set(member) {
   list.fold(over: disallowed, from: set, with: delete)
@@ -3800,14 +3785,21 @@ pub fn split_once(
 ) -> Result(#(String, String), Nil) {
   do_split_once(x, substring)
 }
-@external(javascript, "../gleam_stdlib.mjs", "split_once")
+@target(erlang)
+fn erl_split(a: String, b: String) -> List(String)
+@target(erlang)
 fn do_split_once(x: String, substring: String) -> Result(#(String, String), Nil) {
   case erl_split(x, substring) {
     [first, rest] -> Ok(#(first, rest))
     _ -> Error(Nil)
   }
 }
-fn erl_split(a: String, b: String) -> List(String)
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "split_once")
+fn do_split_once(
+  x x: String,
+  substring substring: String,
+) -> Result(#(String, String), Nil)
 pub fn append(to first: String, suffix second: String) -> String {
   first
   |> string_builder.from_string
@@ -3865,30 +3857,41 @@ fn padding(size: Int, pad_string: String) -> Iterator(String) {
 pub fn trim(string: String) -> String {
   do_trim(string)
 }
-@external(javascript, "../gleam_stdlib.mjs", "trim")
+@target(erlang)
 fn do_trim(string: String) -> String {
   erl_trim(string, Both)
 }
-fn erl_trim(a: String, b: Direction) -> String
+@target(erlang)
 type Direction {
   Leading
   Trailing
   Both
 }
+@target(erlang)
+fn erl_trim(a: String, b: Direction) -> String
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "trim")
+fn do_trim(string string: String) -> String
 pub fn trim_left(string: String) -> String {
   do_trim_left(string)
 }
-@external(javascript, "../gleam_stdlib.mjs", "trim_left")
+@target(erlang)
 fn do_trim_left(string: String) -> String {
   erl_trim(string, Leading)
 }
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "trim_left")
+fn do_trim_left(string string: String) -> String
 pub fn trim_right(string: String) -> String {
   do_trim_right(string)
 }
-@external(javascript, "../gleam_stdlib.mjs", "trim_right")
+@target(erlang)
 fn do_trim_right(string: String) -> String {
   erl_trim(string, Trailing)
 }
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "trim_right")
+fn do_trim_right(string string: String) -> String
 pub fn pop_grapheme(string: String) -> Result(#(String, String), Nil) {
   do_pop_grapheme(string)
 }
@@ -4054,6 +4057,9 @@ fn do_uppercase(a: StringBuilder) -> StringBuilder
 pub fn reverse(builder: StringBuilder) -> StringBuilder {
   do_reverse(builder)
 }
+@target(erlang)
+fn do_reverse(a: StringBuilder) -> StringBuilder
+@target(javascript)
 fn do_reverse(builder: StringBuilder) -> StringBuilder {
   builder
   |> to_string
@@ -4061,19 +4067,28 @@ fn do_reverse(builder: StringBuilder) -> StringBuilder {
   |> list.reverse
   |> from_strings
 }
+@target(javascript)
 @external(javascript, "../gleam_stdlib.mjs", "graphemes")
 fn do_to_graphemes(string string: String) -> List(String)
 pub fn split(iodata: StringBuilder, on pattern: String) -> List(StringBuilder) {
   do_split(iodata, pattern)
 }
+@target(erlang)
 type Direction {
   All
 }
-@external(javascript, "../gleam_stdlib.mjs", "split")
+@target(erlang)
+fn erl_split(a: StringBuilder, b: String, c: Direction) -> List(StringBuilder)
+@target(erlang)
 fn do_split(iodata: StringBuilder, pattern: String) -> List(StringBuilder) {
   erl_split(iodata, pattern, All)
 }
-fn erl_split(a: StringBuilder, b: String, c: Direction) -> List(StringBuilder)
+@target(javascript)
+@external(javascript, "../gleam_stdlib.mjs", "split")
+fn do_split(
+  builder builder: StringBuilder,
+  pattern pattern: String,
+) -> List(StringBuilder)
 @external(javascript, "../gleam_stdlib.mjs", "string_replace")
 pub fn replace(
   in builder: StringBuilder,
@@ -4089,8 +4104,11 @@ pub fn is_empty(builder: StringBuilder) -> Bool {
   "gleam/uri": `import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
+@target(javascript)
 import gleam/pair
+@target(javascript)
 import gleam/regex
+@target(javascript)
 import gleam/result
 import gleam/string
 import gleam/string_builder.{type StringBuilder}
@@ -4108,6 +4126,9 @@ pub type Uri {
 pub fn parse(uri_string: String) -> Result(Uri, Nil) {
   do_parse(uri_string)
 }
+@target(erlang)
+fn do_parse(a: String) -> Result(Uri, Nil)
+@target(javascript)
 fn do_parse(uri_string: String) -> Result(Uri, Nil) {
   let pattern =
     "^(([a-z][a-z0-9\\\\+\\\\-\\\\.]*):)?(//([^/?#]*))?([^?#]*)(\\\\?([^#]*))?(#.*)?"
@@ -4158,6 +4179,7 @@ fn do_parse(uri_string: String) -> Result(Uri, Nil) {
     fragment: fragment,
   ))
 }
+@target(javascript)
 fn regex_submatches(pattern: String, string: String) -> List(Option(String)) {
   pattern
   |> regex.compile(regex.Options(case_insensitive: True, multi_line: False))
@@ -4167,6 +4189,7 @@ fn regex_submatches(pattern: String, string: String) -> List(Option(String)) {
   |> result.map(fn(m: regex.Match) { m.submatches })
   |> result.unwrap([])
 }
+@target(javascript)
 fn noneify_query(x: Option(String)) -> Option(String) {
   case x {
     None -> None
@@ -4177,12 +4200,14 @@ fn noneify_query(x: Option(String)) -> Option(String) {
       }
   }
 }
+@target(javascript)
 fn noneify_empty_string(x: Option(String)) -> Option(String) {
   case x {
     Some("") | None -> None
     Some(_) -> x
   }
 }
+@target(javascript)
 fn split_authority(
   authority: Option(String),
 ) -> #(Option(String), Option(String), Option(Int)) {
@@ -4210,10 +4235,12 @@ fn split_authority(
     }
   }
 }
+@target(javascript)
 fn pad_list(list: List(Option(a)), size: Int) -> List(Option(a)) {
   list
   |> list.append(list.repeat(None, extra_required(list, size)))
 }
+@target(javascript)
 fn extra_required(list: List(a), remaining: Int) -> Int {
   case list {
     _ if remaining == 0 -> 0

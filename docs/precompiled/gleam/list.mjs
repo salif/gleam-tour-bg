@@ -413,21 +413,6 @@ export function fold(loop$list, loop$initial, loop$fun) {
   }
 }
 
-export function count(list, predicate) {
-  return fold(
-    list,
-    0,
-    (acc, value) => {
-      let $ = predicate(value);
-      if ($) {
-        return acc + 1;
-      } else {
-        return acc;
-      }
-    },
-  );
-}
-
 export function group(list, key) {
   return fold(list, $dict.new$(), update_group(key));
 }
@@ -1373,13 +1358,8 @@ function do_window(loop$acc, loop$l, loop$n) {
 }
 
 export function window(l, n) {
-  let $ = n <= 0;
-  if ($) {
-    return toList([]);
-  } else {
-    let _pipe = do_window(toList([]), l, n);
-    return reverse(_pipe);
-  }
+  let _pipe = do_window(toList([]), l, n);
+  return reverse(_pipe);
 }
 
 export function window_by_2(l) {
