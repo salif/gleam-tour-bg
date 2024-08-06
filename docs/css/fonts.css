@@ -10,7 +10,7 @@
 }
 
 p code {
-  font-size: calc(var(--gap) * 1.1);
+  font-size: calc(var(--gap) * 1.16667);
 }
 
 code, .codeflask__textarea {
